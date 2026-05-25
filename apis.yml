@@ -1,0 +1,302 @@
+aid: tensor
+url: https://raw.githubusercontent.com/api-evangelist/tensor/refs/heads/main/apis.yml
+apis:
+- aid: tensor:tensor-api
+  name: Tensor API
+  tags:
+  - NFT
+  - Marketplace
+  - Solana
+  - Blockchain
+  - Web3
+  - Trading
+  - Collections
+  - Listings
+  - Bids
+  - Read
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  properties:
+  - url: https://dev.tensor.trade/reference
+    type: Documentation
+  - url: https://dev.tensor.trade/docs/authentication
+    type: Documentation
+  - url: openapi/tensor-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/tensor-collection-schema.json
+    type: JSONSchema
+  - url: json-schema/tensor-listing-schema.json
+    type: JSONSchema
+  - url: json-schema/tensor-bid-schema.json
+    type: JSONSchema
+  - url: json-schema/tensor-mint-schema.json
+    type: JSONSchema
+  - url: json-schema/tensor-pool-schema.json
+    type: JSONSchema
+  - url: json-ld/tensor-context.jsonld
+    type: JSONLD
+  - url: capabilities/marketplace-read.yaml
+    type: NaftikoCapability
+  - url: examples/tensor-collection-find-example.json
+    type: Examples
+  - url: examples/tensor-active-listings-example.json
+    type: Examples
+  description: Read API surface for the Tensor marketplace covering collections, NFT mint metadata, active listings,
+    bids (collection-wide, single-NFT, trait), TSwap and TAmm pool state, user portfolios, transaction history,
+    royalty enforcement metadata, priority fee oracle, and whitelist verification. Authenticate via the
+    `x-tensor-api-key` header issued through the Tensor Developer Hub.
+- aid: tensor:tensor-tx-api
+  name: Tensor Transaction API
+  tags:
+  - NFT
+  - Marketplace
+  - Solana
+  - Blockchain
+  - Web3
+  - Trading
+  - Transactions
+  - Listings
+  - Bids
+  - Write
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  properties:
+  - url: https://dev.tensor.trade/reference
+    type: Documentation
+  - url: openapi/tensor-tx-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/marketplace-trading.yaml
+    type: NaftikoCapability
+  - url: examples/tensor-tx-list-example.json
+    type: Examples
+  - url: examples/tensor-tx-buy-example.json
+    type: Examples
+  description: Server-side transaction construction API that returns base64-encoded unsigned Solana transactions for
+    the canonical Tensor marketplace flows — list, delist, edit listing, buy, place/accept/cancel collection bid,
+    single-NFT bid, trait bid, deposit/withdraw escrow, create/edit/close AMM pool. Clients sign locally with the
+    user's wallet and submit. Covers standard NFTs, programmable NFTs (pNFT), and compressed NFTs (cNFT).
+- aid: tensor:tensor-websocket-api
+  name: Tensor WebSocket API
+  tags:
+  - NFT
+  - Marketplace
+  - Solana
+  - Blockchain
+  - Web3
+  - Realtime
+  - Streaming
+  - WebSocket
+  - Events
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: wss://api.mainnet.tensordev.io
+  properties:
+  - url: https://dev.tensor.trade/reference
+    type: Documentation
+  - url: asyncapi/tensor-websocket-api-asyncapi.yml
+    type: AsyncAPI
+  - url: capabilities/marketplace-streaming.yaml
+    type: NaftikoCapability
+  description: Subscription-based realtime stream of Tensor marketplace events. Channels include `newTransaction`
+    (every confirmed marketplace action), `ammOrderUpdate` / `ammOrderUpdateAll` (TSwap and TAmm pool state),
+    `tcompBidUpdate` / `tcompBidUpdateAll` (compressed-NFT collection bids), `ping`, and `unsubscribe`. Used to
+    power floor-price feeds, sales bots, and order-book mirroring.
+common:
+- url: https://tensor.trade
+  type: Portal
+- url: https://www.tensor.foundation
+  name: Tensor Foundation
+  type: Portal
+- url: https://dev.tensor.trade
+  name: Tensor Developer Hub
+  type: Portal
+- url: https://dev.tensor.trade/docs
+  type: Documentation
+- url: https://dev.tensor.trade/reference
+  type: Documentation
+- url: https://dev.tensor.trade/changelog
+  type: Documentation
+- url: https://dev.tensor.trade/recipes
+  type: CodeExamples
+- url: https://dev.tensor.trade/docs/getting-started
+  type: GettingStarted
+- url: https://dev.tensor.trade/docs/authentication
+  name: Authentication
+  type: Documentation
+- url: https://dev.tensor.trade/docs/sdks-and-examples
+  name: SDKs and Examples
+  type: Documentation
+- url: https://docs.tensor.trade/
+  name: Marketplace Help Center
+  type: Documentation
+- url: https://docs.tensor.foundation/
+  name: Tensor Foundation Docs
+  type: Documentation
+- url: https://docs.tensor.foundation/tokenomics
+  name: TNSR Tokenomics
+  type: Documentation
+- url: https://docs.tensor.foundation/governance
+  name: Governance
+  type: Documentation
+- url: https://docs.tensor.foundation/audits
+  name: Protocol Audits
+  type: Documentation
+- url: https://docs.tensor.foundation/grants
+  name: Grants Program
+  type: Documentation
+- url: https://app.realms.today/dao/TNSR
+  name: Tensor DAO (Realms)
+  type: Forum
+- url: https://github.com/tensor-foundation
+  name: Tensor Foundation GitHub
+  type: GitHubOrganization
+- url: https://github.com/tensor-hq
+  name: Tensor HQ GitHub
+  type: GitHubOrganization
+- url: https://github.com/tensor-foundation/marketplace
+  name: Marketplace Program (Rust + JS)
+  type: SourceCode
+- url: https://github.com/tensor-foundation/amm
+  name: AMM Program v2
+  type: SourceCode
+- url: https://github.com/tensor-foundation/escrow
+  name: Shared Escrow Program
+  type: SourceCode
+- url: https://github.com/tensor-foundation/whitelist
+  name: Whitelist Program
+  type: SourceCode
+- url: https://github.com/tensor-foundation/fees
+  name: Fees Program
+  type: SourceCode
+- url: https://www.npmjs.com/package/@tensor-foundation/marketplace
+  name: '@tensor-foundation/marketplace'
+  type: SDK
+- url: https://www.npmjs.com/package/@tensor-foundation/amm
+  name: '@tensor-foundation/amm'
+  type: SDK
+- url: https://www.npmjs.com/package/@tensor-foundation/whitelist
+  name: '@tensor-foundation/whitelist'
+  type: SDK
+- url: https://www.npmjs.com/package/@tensor-foundation/escrow
+  name: '@tensor-foundation/escrow'
+  type: SDK
+- url: https://crates.io/crates/tensor-marketplace
+  name: tensor-marketplace (Rust)
+  type: SDK
+- url: https://crates.io/crates/tensor-amm
+  name: tensor-amm (Rust)
+  type: SDK
+- url: https://crates.io/crates/tensor-whitelist
+  name: tensor-whitelist (Rust)
+  type: SDK
+- url: https://crates.io/crates/tensor-escrow
+  name: tensor-escrow (Rust)
+  type: SDK
+- url: https://www.npmjs.com/package/@tensor-oss/tensorswap-sdk
+  name: '@tensor-oss/tensorswap-sdk (legacy)'
+  type: SDK
+- url: https://www.npmjs.com/package/@tensor-oss/tcomp-sdk
+  name: '@tensor-oss/tcomp-sdk (legacy)'
+  type: SDK
+- url: https://www.npmjs.com/package/@tensor-oss/ledger-solana-sdk
+  name: '@tensor-oss/ledger-solana-sdk'
+  type: SDK
+- url: https://github.com/tensor-foundation/SDK-examples
+  name: SDK Examples (Marketplace / AMM / Whitelist / Escrow)
+  type: CodeExamples
+- url: https://github.com/tensor-hq/marketplace-nextjs-template
+  name: Next.js Marketplace Template
+  type: CodeExamples
+- url: https://github.com/tensor-hq/salesbot-discord-template
+  name: Discord Sales Bot Template
+  type: CodeExamples
+- url: https://github.com/tensor-hq/fpchecker-telegram-template
+  name: Telegram Floor Price Checker Template
+  type: CodeExamples
+- url: https://github.com/tensor-hq/toolbox
+  name: Solana Rust toolbox
+  type: Tool
+- url: https://github.com/tensor-hq/toolkit
+  name: Solana JS toolkit
+  type: Tool
+- url: https://github.com/tensor-hq/smart-rpc
+  name: smart-rpc — Intelligent Solana RPC transport
+  type: Tool
+- url: https://github.com/tensor-hq/Unified-Wallet-Kit
+  name: Unified Wallet Kit
+  type: Tool
+- url: https://github.com/tensor-hq/simple-nft-wash-trade-detection
+  name: Simple NFT Wash Trade Detection
+  type: Tool
+- url: https://airtable.com/apppFpk6Ul9yiI6sw/pagCBazYyAewboZnT/form
+  name: API Access Request Form
+  type: SignUp
+- url: https://twitter.com/tensor_hq
+  name: Tensor on X
+  type: SocialMedia
+- url: https://twitter.com/TNSR_DAO
+  name: Tensor DAO on X
+  type: SocialMedia
+- url: plans/tensor-plans-pricing.yml
+  type: Plans
+- url: rate-limits/tensor-rate-limits.yml
+  type: RateLimits
+- url: finops/tensor-finops.yml
+  type: FinOps
+- type: Features
+  data:
+  - Solana's leading NFT marketplace covering 30,000+ collections with deep liquidity
+  - Read API (REST) covering collections, listings, bids, pools, mints, user portfolios, transaction history, and royalty enforcement
+  - Transaction (TX) API that returns unsigned base64 Solana transactions for list / delist / buy / bid / pool ops — clients sign locally
+  - WebSocket subscriptions for `newTransaction`, `ammOrderUpdate`, `tcompBidUpdate`, with ping/unsubscribe control frames
+  - Supports legacy NFTs, programmable NFTs (pNFT), and Bubblegum compressed NFTs (cNFT)
+  - TensorSwap AMM v2 with bonding curves (linear, exponential) and shared escrow for capital-efficient market making
+  - Collection-wide bids, single-NFT bids, and trait-attribute bids
+  - Creator Portal — collection claim/verification, launchpad, and royalty configuration
+  - YOLO Buy aggregator and floor-purchase recipes
+  - On-chain programs are open-source (Apache-2.0) Anchor programs published as IDLs, npm packages, and Rust crates
+  - Five official programs — Marketplace, AMM v2, Whitelist, Escrow, Fees — each shipped as `@tensor-foundation/*` npm and `tensor-*` crates.io packages
+  - Authentication via `x-tensor-api-key` header issued through dev.tensor.trade after Airtable application
+  - smart-rpc transport, Unified Wallet Kit, Next.js / Discord / Telegram starter templates published on GitHub
+  - TNSR token (mint `TNSRxcUxoT9xBG3de7PiJyTDYu7kskLqcpddxnEJAS6`) — 1B supply, governance via Realms DAO at app.realms.today/dao/TNSR
+  - Tensor Foundation Grants program for ecosystem builders
+  - Multiple third-party audits of Anchor programs published at docs.tensor.foundation/audits
+  sources:
+  - https://tensor.trade
+  - https://dev.tensor.trade/
+  - https://dev.tensor.trade/reference
+  - https://dev.tensor.trade/docs/sdks-and-examples
+  - https://docs.tensor.trade/trade/api-and-sdk
+  - https://docs.tensor.foundation/tokenomics
+  - https://github.com/tensor-foundation
+  - https://github.com/tensor-hq
+  updated: '2026-05-24'
+created: '2026-05-24T00:00:00.000Z'
+modified: '2026-05-24'
+position: Providing
+description: Tensor is the Solana-native NFT marketplace and trading protocol founded by Tensor HQ and now stewarded
+  by the Tensor Foundation. The platform exposes a public read REST API, a transaction-construction (TX) API that
+  returns unsigned Solana transactions for list / buy / bid / pool flows, and a WebSocket subscription stream for
+  realtime marketplace events. Five open-source Anchor programs — Marketplace, AMM v2, Whitelist, Escrow, and Fees
+  — back the protocol and ship as `@tensor-foundation/*` JavaScript SDKs and `tensor-*` Rust crates. Tensor
+  supports legacy NFTs, programmable NFTs (pNFT), and Bubblegum compressed NFTs (cNFT), and serves as the
+  execution layer behind aggregators, wallets, sales bots, and AMM bonding-curve liquidity providers across the
+  Solana ecosystem. Governance and ecosystem grants flow through the TNSR token and the Tensor DAO on Realms.
+name: Tensor
+tags:
+- NFT
+- Marketplace
+- Solana
+- Blockchain
+- Web3
+- Cryptocurrency
+- Trading
+- DAO
+- DeFi
+- AMM
+type: APIs.json
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

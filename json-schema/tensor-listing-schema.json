@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tensor/main/json-schema/tensor-listing-schema.json",
+  "title": "Tensor Listing",
+  "description": "An active NFT listing on the Tensor marketplace.",
+  "type": "object",
+  "required": ["mint", "owner", "price", "source"],
+  "properties": {
+    "mint": { "type": "string", "description": "Solana NFT mint address." },
+    "owner": { "type": "string", "description": "Wallet address that owns the listing." },
+    "price": { "type": "string", "description": "Listing price in lamports." },
+    "source": { "type": "string", "enum": ["TENSORSWAP", "TCOMP", "MAGICEDEN_V2", "HYPERSPACE", "SOLANART"] },
+    "txAt": { "type": "string", "format": "date-time" },
+    "blockNumber": { "type": "integer" },
+    "royaltyBps": { "type": "integer" },
+    "rarityRankTT": { "type": "integer", "description": "Tensor Trade rarity rank." },
+    "collectionSlug": { "type": "string" },
+    "nftStandard": { "type": "string", "enum": ["NFT", "pNFT", "cNFT"] }
+  }
+}

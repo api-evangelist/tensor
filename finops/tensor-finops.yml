@@ -1,0 +1,63 @@
+specVersion: '0.1'
+provider: tensor
+name: Tensor — FinOps Definition
+description: |
+  FinOps mapping for Tensor's three commercial surfaces — REST API access, on-chain
+  protocol fees (taker + maker), and AMM market-making positions. Tensor does not
+  publish a SaaS-style invoice; FinOps tracking is split between Tensor (API access)
+  and the Solana ledger (per-transaction fees, royalties, and pool PnL).
+focus:
+  service: NFTMarketplace
+  serviceCategory: BlockchainInfrastructure
+  resource: NFT
+  region: Solana mainnet
+costSurfaces:
+- id: api-access
+  name: API Access
+  billed-by: Tensor (off-chain)
+  pricing-model: ContactSales
+  metering: per-key request volume
+  invoicing: bespoke
+- id: taker-fee
+  name: Marketplace Taker Fee
+  billed-by: Tensor program (on-chain)
+  pricing-model: PercentageOfTradeValue
+  metering: per-trade
+  invoicing: deducted from sale proceeds
+- id: royalty
+  name: Creator Royalty
+  billed-by: Collection creator (on-chain)
+  pricing-model: PercentageOfTradeValue
+  metering: per-trade
+  invoicing: deducted from sale proceeds
+- id: amm-mm-fee
+  name: AMM Market-Maker Fee
+  billed-by: Pool owner (on-chain)
+  pricing-model: BasisPointsPerSwap
+  metering: per-swap
+  invoicing: accrued to pool owner
+- id: solana-network-fee
+  name: Solana Network Fee
+  billed-by: Solana validators
+  pricing-model: PerTransaction
+  metering: per-transaction signature
+  notes: Includes optional priority fee (microlamports per CU) recommended by /api/v1/priority-fees.
+allocation:
+- dimension: collection-slug
+  via: tensor:collectionSlug on every Listing/Bid/Pool/Transaction record.
+- dimension: wallet
+  via: /api/v1/user/transactions
+- dimension: pool
+  via: /api/v1/user/pools/tswap and /api/v1/user/pools/tamm
+governance:
+  reporting:
+  - Reconcile API-driven volume against on-chain settlement via Helius / RPC indexers.
+  - Use the WebSocket newTransaction channel as the source of truth for realtime trade attribution.
+  budget-controls:
+  - Cap `maxPrice` on every buildBuyTx call.
+  - Pre-fund and rotate shared escrow accounts rather than holding large SOL balances per-pool.
+sources:
+- https://docs.tensor.trade/welcome/fees-and-royalties
+- https://dev.tensor.trade/docs/authentication
+- https://docs.tensor.foundation/
+updated: '2026-05-24'

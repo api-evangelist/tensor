@@ -1,0 +1,60 @@
+specVersion: '0.1'
+provider: tensor
+name: Tensor — Plans and Pricing
+description: |
+  The Tensor REST, TX, and WebSocket APIs are gated behind an Airtable application
+  form rather than a self-serve pricing page. There is no public list price; access
+  tiers and rate limits are negotiated per developer. Protocol-level fees (taker fee,
+  royalties, AMM mm-fees) apply at the on-chain level regardless of API tier.
+links:
+- type: signup
+  url: https://airtable.com/apppFpk6Ul9yiI6sw/pagCBazYyAewboZnT/form
+- type: docs
+  url: https://dev.tensor.trade/docs/authentication
+- type: foundation-docs
+  url: https://docs.tensor.foundation/
+plans:
+- id: developer-application
+  name: Developer (Application-Gated)
+  audience: Traders, market-makers, aggregators, wallets, sales-bot operators
+  price:
+    model: contact-sales
+    listed: false
+  features:
+  - Access to Tensor REST API (collections, listings, bids, pools, mints, user data)
+  - Access to Tensor Transaction (TX) API for list/buy/bid/pool/escrow flows
+  - Access to WebSocket subscriptions (newTransaction, ammOrderUpdate, tcompBidUpdate)
+  - Open-source `@tensor-foundation/*` SDKs and `tensor-*` Rust crates
+  - Public IDLs for Marketplace, AMM v2, Whitelist, Escrow, and Fees programs
+  rateLimits:
+    documented: false
+    notes: Rate limits set per applicant during onboarding.
+  acquisition:
+    process: Submit Airtable form; team approves and issues `x-tensor-api-key`.
+- id: open-source-direct
+  name: Direct On-Chain Integration
+  audience: Builders willing to interact directly with Tensor's Anchor programs
+  price:
+    model: free-protocol
+  features:
+  - Use `@tensor-foundation/marketplace`, `@tensor-foundation/amm`, `@tensor-foundation/whitelist`, `@tensor-foundation/escrow` JS SDKs
+  - Use `tensor-marketplace`, `tensor-amm`, `tensor-whitelist`, `tensor-escrow` Rust crates
+  - Construct instructions and sign locally; no Tensor-hosted API required
+  - Protocol fees still apply on-chain
+protocolFees:
+- name: Taker Fee
+  description: Tensor charges a taker fee on each marketplace transaction. Current rate published at https://docs.tensor.trade/welcome/fees-and-royalties.
+- name: Royalties
+  description: Per-collection royalty bps (typically 0–10%) enforced for pNFTs and configurable for legacy NFTs.
+- name: AMM Maker-Maker (mmFee)
+  description: Pool owners can charge an mm-fee in bps that is added to swaps against their pool.
+governance:
+  token: TNSR
+  mint: TNSRxcUxoT9xBG3de7PiJyTDYu7kskLqcpddxnEJAS6
+  totalSupply: 1000000000
+  dao: https://app.realms.today/dao/TNSR
+sources:
+- https://dev.tensor.trade/docs/authentication
+- https://docs.tensor.trade/trade/api-and-sdk
+- https://docs.tensor.foundation/tokenomics
+updated: '2026-05-24'

@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.mainnet.tensordev.io/api/v1/tx/list?mint=AaQpJ4F8Y8w3xZk1Vc3yJ2gQpQ7H1Y6N5pP4cL9V6sUu&owner=5JV9X8b1Vh4G8N4yKgM2tP6sB1cR3jL2eT3y2pQwM8Aa&price=5800000000",
+    "headers": {
+      "x-tensor-api-key": "<TENSOR_API_KEY>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "txs": [
+        {
+          "tx": "<base64-encoded-unsigned-solana-versioned-transaction>",
+          "lastValidBlockHeight": 320500000
+        }
+      ],
+      "metadata": {
+        "priorityFeeMicroLamports": 50000,
+        "nftStandard": "pNFT",
+        "royaltyBps": 500
+      }
+    }
+  }
+}

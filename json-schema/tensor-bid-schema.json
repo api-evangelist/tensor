@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tensor/main/json-schema/tensor-bid-schema.json",
+  "title": "Tensor Bid",
+  "description": "A bid against a Tensor collection, single NFT, or trait.",
+  "type": "object",
+  "required": ["bidder", "price", "bidType"],
+  "properties": {
+    "bidder": { "type": "string" },
+    "price": { "type": "string", "description": "Bid price per NFT in lamports." },
+    "bidType": { "type": "string", "enum": ["Collection", "SingleNft", "Trait"] },
+    "quantity": { "type": "integer", "minimum": 1 },
+    "filled": { "type": "integer", "minimum": 0 },
+    "margin": { "type": "string", "description": "Collateral in lamports (shared escrow)." },
+    "collectionSlug": { "type": "string" },
+    "mint": { "type": "string", "description": "Required when bidType=SingleNft." },
+    "trait": {
+      "type": "object",
+      "description": "Required when bidType=Trait.",
+      "properties": {
+        "name": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    },
+    "expiry": { "type": "string", "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

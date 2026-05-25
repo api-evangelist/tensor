@@ -1,0 +1,30 @@
+name: tensor-marketplace-streaming
+title: Tensor Marketplace — Realtime Streaming
+description: |
+  Capability bundle that subscribes to Tensor WebSocket channels for marketplace events,
+  AMM pool updates, and compressed-NFT bid updates. Used to power floor feeds, sales bots,
+  and order-book mirroring.
+provider: tensor
+api: tensor:tensor-websocket-api
+specification:
+  type: asyncapi
+  url: ../asyncapi/tensor-websocket-api-asyncapi.yml
+authentication:
+  type: api-key
+  header: x-tensor-api-key
+channels:
+- id: newTransaction
+  intent: stream-marketplace-events
+- id: ammOrderUpdate
+  intent: stream-pool-updates
+- id: ammOrderUpdateAll
+  intent: stream-all-pool-updates
+- id: tcompBidUpdate
+  intent: stream-cnft-bid-updates
+- id: tcompBidUpdateAll
+  intent: stream-all-cnft-bid-updates
+governance:
+  read-only: true
+  pii: false
+  signing: false
+  rate-management: subscribe-unsubscribe

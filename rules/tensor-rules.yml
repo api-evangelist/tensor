@@ -1,0 +1,48 @@
+extends:
+- spectral:oas
+rules:
+  tensor-info-title:
+    description: Operation summaries should be Title Case.
+    severity: warn
+    given: $.paths[*][*].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][a-zA-Z0-9-]*)(\s+[A-Z][a-zA-Z0-9-]*)*$'
+  tensor-require-api-key:
+    description: All operations must require the x-tensor-api-key API key security scheme.
+    severity: error
+    given: $.paths[*][*]
+    then:
+      field: security
+      function: truthy
+  tensor-base-url:
+    description: Servers should use the api.mainnet.tensordev.io base URL.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://api\.mainnet\.tensordev\.io.*'
+  tensor-snake-or-camel-params:
+    description: Query and path parameter names should be camelCase.
+    severity: warn
+    given: $.paths[*][*].parameters[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  tensor-operation-id-camel:
+    description: Operation IDs should be camelCase.
+    severity: warn
+    given: $.paths[*][*].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  tensor-tx-response-shape:
+    description: TX API operations must return a `txs` array of base64-encoded transactions.
+    severity: error
+    given: $.paths[?(@property=~"^/api/v1/tx/")].*.responses.200.content.application/json.schema
+    then:
+      function: truthy

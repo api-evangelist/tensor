@@ -1,0 +1,58 @@
+name: Tensor Vocabulary
+description: Domain vocabulary for the Tensor Solana NFT marketplace covering trading, AMM, escrow, and governance.
+version: '0.1'
+domains:
+- name: Marketplace
+  terms:
+  - id: Collection
+    definition: A group of NFTs sharing a verified slug, creator, and metadata schema.
+  - id: Mint
+    definition: A Solana NFT mint address; the canonical identifier for a single NFT.
+  - id: Listing
+    definition: An on-chain offer to sell an NFT at a fixed price.
+  - id: Bid
+    definition: An on-chain offer to buy an NFT (collection-wide, single-mint, or trait-targeted).
+  - id: FloorPrice
+    definition: The lowest active asking price across all listings in a collection.
+  - id: ActivityHistory
+    definition: Chronological record of marketplace events for a collection or wallet.
+- name: NFT Standards
+  terms:
+  - id: NFT
+    definition: Standard Solana SPL Token with Metaplex Token Metadata.
+  - id: pNFT
+    definition: Programmable NFT — Metaplex standard with enforceable royalties and rule sets.
+  - id: cNFT
+    definition: Compressed NFT — Metaplex Bubblegum standard storing state in a Merkle tree.
+- name: AMM
+  terms:
+  - id: TSwap
+    definition: First-generation TensorSwap AMM program supporting linear and exponential bonding curves.
+  - id: TAmm
+    definition: TensorAMM v2 program with improved capital efficiency and shared escrow.
+  - id: Pool
+    definition: A bonding-curve liquidity position holding SOL, NFTs, or both.
+  - id: BondingCurve
+    definition: The price function (linear or exponential) governing pool quotes.
+  - id: SharedEscrow
+    definition: Cross-pool collateral account that funds multiple bids without locking SOL per-pool.
+  - id: ImpermanentLoss
+    definition: The risk of value loss when an LP's two-sided pool drifts from the floor.
+- name: Governance
+  terms:
+  - id: TNSR
+    definition: Tensor governance token. Mint address `TNSRxcUxoT9xBG3de7PiJyTDYu7kskLqcpddxnEJAS6`. Total supply 1B.
+  - id: TensorFoundation
+    definition: Non-profit foundation that stewards the Tensor protocol and runs the grants program.
+  - id: TensorDAO
+    definition: TNSR-token governance DAO hosted on Realms (app.realms.today/dao/TNSR).
+- name: Roles
+  terms:
+  - id: Trader
+    definition: User listing or buying NFTs through the marketplace.
+  - id: MarketMaker
+    definition: User providing two-sided liquidity through TSwap or TAmm pools.
+  - id: Creator
+    definition: Collection deployer with royalty configuration rights via the Creator Portal.
+  - id: Tensorian
+    definition: Holder of the Tensorians NFT collection — Tensor's flagship pNFT mint.

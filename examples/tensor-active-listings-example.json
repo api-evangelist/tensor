@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.mainnet.tensordev.io/api/v1/listings?slug=tensorians&sortBy=PriceAsc&limit=2",
+    "headers": {
+      "x-tensor-api-key": "<TENSOR_API_KEY>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "mint": "AaQpJ4F8Y8w3xZk1Vc3yJ2gQpQ7H1Y6N5pP4cL9V6sUu",
+        "owner": "5JV9X8b1Vh4G8N4yKgM2tP6sB1cR3jL2eT3y2pQwM8Aa",
+        "price": "5800000000",
+        "source": "TENSORSWAP",
+        "txAt": "2026-05-23T18:14:22Z",
+        "blockNumber": 320489211,
+        "royaltyBps": 500,
+        "rarityRankTT": 142,
+        "collectionSlug": "tensorians",
+        "nftStandard": "pNFT"
+      },
+      {
+        "mint": "Cv9wQzJ7n8X4M2sB6Y3kP1rL5y2cQ8vT1jU6gK7fH3Bb",
+        "owner": "9Hc4b1y2Q8wK5p1V3eL6sR2nT7jP4xM9yQ8gC1bA3sUu",
+        "price": "5810000000",
+        "source": "TENSORSWAP",
+        "txAt": "2026-05-23T18:31:11Z",
+        "blockNumber": 320489904,
+        "royaltyBps": 500,
+        "rarityRankTT": 891,
+        "collectionSlug": "tensorians",
+        "nftStandard": "pNFT"
+      }
+    ]
+  }
+}

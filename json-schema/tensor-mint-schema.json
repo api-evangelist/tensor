@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tensor/main/json-schema/tensor-mint-schema.json",
+  "title": "Tensor Mint",
+  "description": "Metadata for an indexed NFT mint on Tensor.",
+  "type": "object",
+  "required": ["mint"],
+  "properties": {
+    "mint": { "type": "string" },
+    "name": { "type": "string" },
+    "imageUri": { "type": "string", "format": "uri" },
+    "owner": { "type": "string" },
+    "collectionSlug": { "type": "string" },
+    "nftStandard": { "type": "string", "enum": ["NFT", "pNFT", "cNFT"] },
+    "royaltyBps": { "type": "integer" },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "trait_type": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "rarityRankTT": { "type": "integer" },
+    "lastSalePrice": { "type": "string" }
+  }
+}

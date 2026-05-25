@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tensor/main/json-schema/tensor-collection-schema.json",
+  "title": "Tensor Collection",
+  "description": "An NFT collection indexed by Tensor on Solana.",
+  "type": "object",
+  "required": ["slug", "name"],
+  "properties": {
+    "slug": { "type": "string", "description": "Stable collection identifier used across the Tensor API." },
+    "name": { "type": "string" },
+    "symbol": { "type": "string" },
+    "imageUri": { "type": "string", "format": "uri" },
+    "isVerified": { "type": "boolean" },
+    "supply": { "type": "integer", "minimum": 0 },
+    "nftStandard": { "type": "string", "enum": ["NFT", "pNFT", "cNFT"] },
+    "floorPrice": { "type": "string", "description": "Current floor price in lamports." },
+    "buyNowPrice": { "type": "string" },
+    "sellNowPrice": { "type": "string" },
+    "listedCount": { "type": "integer", "minimum": 0 },
+    "numOwners": { "type": "integer", "minimum": 0 },
+    "volumeAll": { "type": "string", "description": "All-time volume in lamports." },
+    "volume24h": { "type": "string" },
+    "royaltyBps": { "type": "integer", "minimum": 0, "maximum": 10000 },
+    "twitter": { "type": "string" },
+    "discord": { "type": "string" },
+    "website": { "type": "string", "format": "uri" }
+  }
+}

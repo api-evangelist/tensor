@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.mainnet.tensordev.io/api/v1/collections/find?query=tensorians",
+    "headers": {
+      "x-tensor-api-key": "<TENSOR_API_KEY>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "slug": "tensorians",
+        "name": "Tensorians",
+        "symbol": "TNSR",
+        "imageUri": "https://www.tensor.trade/images/tensorians-pfp.png",
+        "isVerified": true,
+        "supply": 10000,
+        "nftStandard": "pNFT",
+        "floorPrice": "5800000000",
+        "buyNowPrice": "5800000000",
+        "sellNowPrice": "5450000000",
+        "listedCount": 412,
+        "numOwners": 5163,
+        "volumeAll": "8125000000000000",
+        "volume24h": "127000000000",
+        "royaltyBps": 500,
+        "twitter": "https://twitter.com/tensor_hq",
+        "website": "https://tensor.trade/trade/tensorians"
+      }
+    ]
+  }
+}

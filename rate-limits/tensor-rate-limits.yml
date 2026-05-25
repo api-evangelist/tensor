@@ -1,0 +1,38 @@
+specVersion: '0.1'
+provider: tensor
+name: Tensor — Rate Limits
+description: |
+  Tensor does not publish public rate-limit numbers. Each `x-tensor-api-key` is issued
+  with a tier negotiated during Airtable onboarding, scaled to the partner's workload.
+  Protocol-level concurrency is bounded by Solana mainnet itself: ~50,000 TPS theoretical,
+  with per-account write-lock contention as the practical limit on hot collections.
+limits:
+- surface: REST
+  scope: api-key
+  rate:
+    documented: false
+    notes: "Negotiated per partner. Public reference: https://dev.tensor.trade/docs/authentication."
+- surface: TX
+  scope: api-key
+  rate:
+    documented: false
+    notes: TX construction limits move with the REST tier; Solana RPC submission is downstream and not bounded by Tensor.
+- surface: WebSocket
+  scope: api-key
+  rate:
+    documented: false
+    notes: Single connection per key recommended; multiplex subscriptions via subscribe/unsubscribe frames.
+solana:
+  consensus: Solana mainnet
+  notes:
+  - Blocks every ~400 ms; finality typically <2 s.
+  - High-contention NFT mints may require priority fees; query GET /api/v1/priority-fees for the live recommendation.
+backoff:
+  strategy: exponential
+  guidance:
+  - Honor HTTP 429 with `Retry-After` headers where present.
+  - Refresh `lastValidBlockHeight` from the TX response and resubmit before expiry.
+sources:
+- https://dev.tensor.trade/docs/authentication
+- https://docs.tensor.trade/trade/api-and-sdk
+updated: '2026-05-24'

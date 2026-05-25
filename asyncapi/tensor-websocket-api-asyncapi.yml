@@ -1,0 +1,154 @@
+asyncapi: 3.0.0
+info:
+  title: Tensor WebSocket API
+  version: '1.0'
+  description: |
+    Realtime subscription stream for the Tensor Solana NFT marketplace. Clients open a
+    single WebSocket connection authenticated with `x-tensor-api-key`, then send JSON
+    subscribe/unsubscribe control frames addressing one of the channels below. The
+    server publishes JSON event frames as marketplace state changes on-chain.
+
+    Documented at https://dev.tensor.trade/reference.
+servers:
+  mainnet:
+    host: api.mainnet.tensordev.io
+    protocol: wss
+    description: Mainnet WebSocket subscription endpoint.
+    security:
+    - $ref: '#/components/securitySchemes/ApiKeyAuth'
+channels:
+  newTransaction:
+    address: newTransaction
+    messages:
+      transactionEvent:
+        $ref: '#/components/messages/TransactionEvent'
+    description: Every confirmed marketplace transaction (list, delist, buy, bid placed, bid accepted, bid cancelled).
+  ammOrderUpdate:
+    address: ammOrderUpdate
+    messages:
+      poolUpdate:
+        $ref: '#/components/messages/PoolUpdate'
+    description: Updates to a specific TSwap or TAmm pool the client subscribed to.
+  ammOrderUpdateAll:
+    address: ammOrderUpdateAll
+    messages:
+      poolUpdate:
+        $ref: '#/components/messages/PoolUpdate'
+    description: Updates across all TSwap / TAmm pools in subscribed collections.
+  tcompBidUpdate:
+    address: tcompBidUpdate
+    messages:
+      bidUpdate:
+        $ref: '#/components/messages/BidUpdate'
+    description: Updates to a specific compressed-NFT collection bid.
+  tcompBidUpdateAll:
+    address: tcompBidUpdateAll
+    messages:
+      bidUpdate:
+        $ref: '#/components/messages/BidUpdate'
+    description: Updates across all compressed-NFT collection bids for subscribed collections.
+  ping:
+    address: ping
+    messages:
+      ping:
+        $ref: '#/components/messages/Ping'
+    description: Keep-alive control frame. Server responds with `pong`.
+  unsubscribe:
+    address: unsubscribe
+    messages:
+      unsubscribe:
+        $ref: '#/components/messages/Unsubscribe'
+    description: Cancel one or more active subscriptions.
+operations:
+  receiveTransaction:
+    action: receive
+    channel:
+      $ref: '#/channels/newTransaction'
+  receiveAmmOrderUpdate:
+    action: receive
+    channel:
+      $ref: '#/channels/ammOrderUpdate'
+  receiveAmmOrderUpdateAll:
+    action: receive
+    channel:
+      $ref: '#/channels/ammOrderUpdateAll'
+  receiveTcompBidUpdate:
+    action: receive
+    channel:
+      $ref: '#/channels/tcompBidUpdate'
+  receiveTcompBidUpdateAll:
+    action: receive
+    channel:
+      $ref: '#/channels/tcompBidUpdateAll'
+  sendPing:
+    action: send
+    channel:
+      $ref: '#/channels/ping'
+  sendUnsubscribe:
+    action: send
+    channel:
+      $ref: '#/channels/unsubscribe'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key
+  messages:
+    TransactionEvent:
+      name: TransactionEvent
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          slot: { type: integer }
+          signature: { type: string }
+          mint: { type: string }
+          txType: { type: string, enum: [List, Delist, Buy, Bid, BidCancel, BidAccept, PoolCreate, PoolEdit, PoolClose] }
+          price: { type: string, description: 'Lamports.' }
+          buyer: { type: string }
+          seller: { type: string }
+          collectionSlug: { type: string }
+    PoolUpdate:
+      name: PoolUpdate
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          pool: { type: string }
+          owner: { type: string }
+          collectionSlug: { type: string }
+          startingPrice: { type: string }
+          delta: { type: string }
+          poolType: { type: string }
+          curveType: { type: string }
+          nftsHeld: { type: integer }
+          solBalance: { type: string }
+    BidUpdate:
+      name: BidUpdate
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          bid: { type: string }
+          bidder: { type: string }
+          collectionSlug: { type: string }
+          price: { type: string }
+          quantity: { type: integer }
+          margin: { type: string }
+    Ping:
+      name: Ping
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          op: { type: string, const: ping }
+    Unsubscribe:
+      name: Unsubscribe
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          op: { type: string, const: unsubscribe }
+          channel: { type: string }
+          target: { type: string, description: 'Slug, pool, bid, or mint depending on channel.' }

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tensor/main/json-schema/tensor-pool-schema.json",
+  "title": "Tensor AMM Pool",
+  "description": "A TSwap (v1) or TAmm (v2) bonding-curve pool on Tensor.",
+  "type": "object",
+  "required": ["pool", "owner", "poolType", "curveType"],
+  "properties": {
+    "pool": { "type": "string", "description": "Pool PDA address." },
+    "owner": { "type": "string" },
+    "collectionSlug": { "type": "string" },
+    "poolType": { "type": "string", "enum": ["Buy", "Sell", "TwoSided"] },
+    "curveType": { "type": "string", "enum": ["Linear", "Exponential"] },
+    "startingPrice": { "type": "string", "description": "Current quote in lamports." },
+    "delta": { "type": "string", "description": "Curve delta (lamports or basis points)." },
+    "mmFeeBps": { "type": "integer" },
+    "nftsHeld": { "type": "integer", "minimum": 0 },
+    "solBalance": { "type": "string" },
+    "marginAccount": { "type": "string" },
+    "version": { "type": "string", "enum": ["TSwap", "TAmm"] }
+  }
+}

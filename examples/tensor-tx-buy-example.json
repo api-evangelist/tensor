@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.mainnet.tensordev.io/api/v1/tx/buy?mint=AaQpJ4F8Y8w3xZk1Vc3yJ2gQpQ7H1Y6N5pP4cL9V6sUu&buyer=9Hc4b1y2Q8wK5p1V3eL6sR2nT7jP4xM9yQ8gC1bA3sUu&maxPrice=5900000000",
+    "headers": {
+      "x-tensor-api-key": "<TENSOR_API_KEY>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "txs": [
+        {
+          "tx": "<base64-encoded-unsigned-solana-versioned-transaction>",
+          "lastValidBlockHeight": 320501122
+        }
+      ],
+      "metadata": {
+        "priorityFeeMicroLamports": 75000,
+        "tensorFeeBps": 150,
+        "royaltyBps": 500
+      }
+    }
+  }
+}
