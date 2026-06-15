@@ -1,0 +1,518 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Transaction (TX) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Build List NFT Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/list",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "blockhash",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Construct a transaction to list an NFT, pNFT, or cNFT for sale."
+        },
+        {
+          "info": {
+            "name": "Build Edit Listing Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/edit-listing",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Edit Listing Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Delist Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/delist",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Delist Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Buy Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/buy",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "buyer",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxPrice",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Buy Transaction"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bids",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Build Place Collection Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/place-collection-bid",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Place Collection Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Place Single-NFT Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/place-single-nft-bid",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Place Single-NFT Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Place Trait Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/place-trait-bid",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Place Trait Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Accept Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/accept-bid",
+            "params": [
+              {
+                "name": "bid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "seller",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Accept Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Cancel Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/cancel-bid",
+            "params": [
+              {
+                "name": "bid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Cancel Bid Transaction"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Build Create Pool Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/create",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "curveType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startingPrice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mmFeeBps",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Open a TensorAMM v2 bonding-curve pool."
+        },
+        {
+          "info": {
+            "name": "Build Edit Pool Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/edit",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startingPrice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Edit Pool Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Close Pool Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/close",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Close Pool Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Pool Deposit Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/deposit",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Pool Deposit Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Pool Withdraw Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/withdraw",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Pool Withdraw Transaction"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Escrow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Build Shared Escrow Deposit Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/escrow/deposit",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Shared Escrow Deposit Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Shared Escrow Withdraw Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/escrow/withdraw",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Shared Escrow Withdraw Transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
