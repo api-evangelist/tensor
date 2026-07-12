@@ -98,6 +98,10 @@ apis:
       `tcompBidUpdate` / `tcompBidUpdateAll` (compressed-NFT collection bids), `ping`, and `unsubscribe`. Used to power
       floor-price feeds, sales bots, and order-book mirroring.
 common:
+  - type: DomainSecurity
+    url: security/tensor-domain-security.yml
+  - type: Authentication
+    url: authentication/tensor-authentication.yml
   - url: https://tensor.trade
     type: Portal
   - url: https://www.tensor.foundation
@@ -239,6 +243,8 @@ common:
     type: RateLimits
   - url: finops/tensor-finops.yml
     type: FinOps
+  - url: https://dev.tensor.trade/changelog
+    type: Blog
   - type: Features
     data:
       - Solana's leading NFT marketplace covering 30,000+ collections with deep liquidity
