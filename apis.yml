@@ -98,6 +98,8 @@ apis:
       `tcompBidUpdate` / `tcompBidUpdateAll` (compressed-NFT collection bids), `ping`, and `unsubscribe`. Used to power
       floor-price feeds, sales bots, and order-book mirroring.
 common:
+  - type: AgenticAccess
+    url: agentic-access/tensor-agentic-access.yml
   - type: DomainSecurity
     url: security/tensor-domain-security.yml
   - type: Authentication
