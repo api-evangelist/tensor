@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Tensor Bids Listings API
+  version: '1.0'
+  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+
+    metadata, priority fee oracle, and whitelist verification.
+
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+
+    Tensor Developer Hub.
+
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+
+    reference for canonical request and response payload field names.
+
+    '
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Listings
+paths:
+  /api/v1/listings:
+    get:
+      tags:
+      - Listings
+      summary: Active Listings
+      operationId: listActiveListings
+      parameters:
+      - name: slug
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          enum:
+          - PriceAsc
+          - PriceDesc
+          - RankAsc
+          - RankDesc
+          - ListedDesc
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active listings for the collection.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Listing'
+  /api/v1/collections/{slug}/activity:
+    get:
+      tags:
+      - Listings
+      summary: Collection Transaction History
+      operationId: getCollectionActivity
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: types
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: false
+      responses:
+        '200':
+          description: Recent collection activity (sales
+          listings: null
+          delists: null
+          bids).: null
+  /api/v1/tx/list:
+    get:
+      tags:
+      - Listings
+      summary: Build List NFT Transaction
+      operationId: buildListTx
+      description: Construct a transaction to list an NFT, pNFT, or cNFT for sale.
+      parameters:
+      - name: mint
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: price
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Price in lamports.
+      - name: blockhash
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/edit-listing:
+    get:
+      tags:
+      - Listings
+      summary: Build Edit Listing Transaction
+      operationId: buildEditListingTx
+      parameters:
+      - name: mint
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: price
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/delist:
+    get:
+      tags:
+      - Listings
+      summary: Build Delist Transaction
+      operationId: buildDelistTx
+      parameters:
+      - name: mint
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/buy:
+    get:
+      tags:
+      - Listings
+      summary: Build Buy Transaction
+      operationId: buildBuyTx
+      parameters:
+      - name: mint
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: buyer
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: maxPrice
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+components:
+  schemas:
+    Listing:
+      $ref: ../json-schema/tensor-listing-schema.json
+  responses:
+    UnsignedTx:
+      description: Base64-encoded unsigned Solana transaction ready for client-side signing.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - txs
+            properties:
+              txs:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - tx
+                  properties:
+                    tx:
+                      type: string
+                      description: Base64-encoded serialized Solana versioned transaction.
+                    lastValidBlockHeight:
+                      type: integer
+              metadata:
+                type: object
+                additionalProperties: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key

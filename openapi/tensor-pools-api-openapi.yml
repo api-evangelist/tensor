@@ -1,0 +1,262 @@
+openapi: 3.1.0
+info:
+  title: Tensor Bids Pools API
+  version: '1.0'
+  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+
+    metadata, priority fee oracle, and whitelist verification.
+
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+
+    Tensor Developer Hub.
+
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+
+    reference for canonical request and response payload field names.
+
+    '
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Pools
+paths:
+  /api/v1/pools/tswap:
+    get:
+      tags:
+      - Pools
+      summary: TSwap Pools
+      operationId: getTswapPools
+      parameters:
+      - name: slug
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: TensorSwap (v1) pools for the collection.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pool'
+  /api/v1/pools/tamm:
+    get:
+      tags:
+      - Pools
+      summary: TAmm Pools
+      operationId: getTammPools
+      parameters:
+      - name: slug
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: TensorAMM (v2) pools for the collection.
+  /api/v1/tx/pool/create:
+    get:
+      tags:
+      - Pools
+      summary: Build Create Pool Transaction
+      operationId: buildCreatePoolTx
+      description: Open a TensorAMM v2 bonding-curve pool.
+      parameters:
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: poolType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Buy
+          - Sell
+          - TwoSided
+      - name: curveType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Linear
+          - Exponential
+      - name: startingPrice
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: delta
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: mmFeeBps
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/pool/edit:
+    get:
+      tags:
+      - Pools
+      summary: Build Edit Pool Transaction
+      operationId: buildEditPoolTx
+      parameters:
+      - name: pool
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startingPrice
+        in: query
+        schema:
+          type: string
+      - name: delta
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/pool/close:
+    get:
+      tags:
+      - Pools
+      summary: Build Close Pool Transaction
+      operationId: buildClosePoolTx
+      parameters:
+      - name: pool
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/pool/deposit:
+    get:
+      tags:
+      - Pools
+      summary: Build Pool Deposit Transaction
+      operationId: buildPoolDepositTx
+      parameters:
+      - name: pool
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: amount
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+  /api/v1/tx/pool/withdraw:
+    get:
+      tags:
+      - Pools
+      summary: Build Pool Withdraw Transaction
+      operationId: buildPoolWithdrawTx
+      parameters:
+      - name: pool
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: amount
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/UnsignedTx'
+components:
+  schemas:
+    Pool:
+      $ref: ../json-schema/tensor-pool-schema.json
+  responses:
+    UnsignedTx:
+      description: Base64-encoded unsigned Solana transaction ready for client-side signing.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - txs
+            properties:
+              txs:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - tx
+                  properties:
+                    tx:
+                      type: string
+                      description: Base64-encoded serialized Solana versioned transaction.
+                    lastValidBlockHeight:
+                      type: integer
+              metadata:
+                type: object
+                additionalProperties: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key

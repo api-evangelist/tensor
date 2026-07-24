@@ -1,0 +1,115 @@
+openapi: 3.1.0
+info:
+  title: Tensor Bids NFTs API
+  version: '1.0'
+  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+
+    metadata, priority fee oracle, and whitelist verification.
+
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+
+    Tensor Developer Hub.
+
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+
+    reference for canonical request and response payload field names.
+
+    '
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: NFTs
+paths:
+  /api/v1/mints/info:
+    get:
+      tags:
+      - NFTs
+      summary: NFTs Info
+      operationId: getMintsInfo
+      parameters:
+      - name: mints
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: false
+      responses:
+        '200':
+          description: Mint metadata for each requested NFT.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mint'
+  /api/v1/collections/{slug}/mints:
+    get:
+      tags:
+      - NFTs
+      summary: NFTs by Collection
+      operationId: getNftsByCollection
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated mints in the collection.
+  /api/v1/collections/{slug}/mint-list:
+    get:
+      tags:
+      - NFTs
+      summary: Mint List
+      operationId: getMintList
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Complete list of mints in the collection.
+components:
+  schemas:
+    Mint:
+      $ref: ../json-schema/tensor-mint-schema.json
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key

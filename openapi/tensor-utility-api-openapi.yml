@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Tensor Bids Utility API
+  version: '1.0'
+  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+
+    metadata, priority fee oracle, and whitelist verification.
+
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+
+    Tensor Developer Hub.
+
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+
+    reference for canonical request and response payload field names.
+
+    '
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Utility
+paths:
+  /api/v1/mints/refresh-metadata:
+    post:
+      tags:
+      - Utility
+      summary: Refresh Mint Metadata
+      operationId: refreshMintMetadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mints:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '202':
+          description: Refresh queued.
+  /api/v1/mints/refresh-rarities:
+    post:
+      tags:
+      - Utility
+      summary: Refresh Mint Rarities
+      operationId: refreshMintRarities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+      responses:
+        '202':
+          description: Refresh queued.
+  /api/v1/mint-proof:
+    get:
+      tags:
+      - Utility
+      summary: Mint Proof
+      operationId: getMintProof
+      parameters:
+      - name: mint
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: whitelist
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Merkle proof for inclusion in the collection whitelist.
+  /api/v1/bids/trait-attributes:
+    get:
+      tags:
+      - Utility
+      summary: Trait Bid Attributes
+      operationId: getTraitBidAttributes
+      parameters:
+      - name: slug
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Available trait/value pairs that can be bid against.
+  /api/v1/whitelist/{address}:
+    get:
+      tags:
+      - Utility
+      summary: Whitelist Info
+      operationId: getWhitelistInfo
+      parameters:
+      - name: address
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: On-chain whitelist program account.
+  /api/v1/priority-fees:
+    get:
+      tags:
+      - Utility
+      summary: Priority Fees
+      operationId: getPriorityFees
+      responses:
+        '200':
+          description: Recommended Solana priority fee tiers for marketplace transactions.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key

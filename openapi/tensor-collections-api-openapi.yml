@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: Tensor Bids Collections API
+  version: '1.0'
+  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+
+    metadata, priority fee oracle, and whitelist verification.
+
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+
+    Tensor Developer Hub.
+
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+
+    reference for canonical request and response payload field names.
+
+    '
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Collections
+paths:
+  /api/v1/collections/find:
+    get:
+      tags:
+      - Collections
+      summary: Find Any Collection
+      operationId: findCollection
+      description: Search verified and unverified collections by slug, name, or on-chain identifier.
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of matching collections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+  /api/v1/collections/verified:
+    get:
+      tags:
+      - Collections
+      summary: Get Verified Collections
+      operationId: listVerifiedCollections
+      responses:
+        '200':
+          description: Verified collections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+  /api/v1/collections/{slug}/traits:
+    get:
+      tags:
+      - Collections
+      summary: Collection Traits
+      operationId: getCollectionTraits
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Trait dictionary for the collection.
+  /api/v1/collections/search:
+    get:
+      tags:
+      - Collections
+      summary: Search Collections
+      operationId: searchCollections
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: Search results.
+  /api/v1/collections/by-nfts:
+    get:
+      tags:
+      - Collections
+      summary: Get Collections by NFTs
+      operationId: getCollectionsByNfts
+      parameters:
+      - name: mints
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: false
+      responses:
+        '200':
+          description: Collections for the supplied mints.
+components:
+  schemas:
+    Collection:
+      $ref: ../json-schema/tensor-collection-schema.json
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key

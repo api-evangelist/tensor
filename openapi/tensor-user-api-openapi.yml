@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Tensor Bids User API
+  version: '1.0'
+  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+
+    metadata, priority fee oracle, and whitelist verification.
+
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+
+    Tensor Developer Hub.
+
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+
+    reference for canonical request and response payload field names.
+
+    '
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: User
+paths:
+  /api/v1/user/listings:
+    get:
+      tags:
+      - User
+      summary: User Listings
+      operationId: getUserListings
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active listings owned by the wallet.
+  /api/v1/user/bids/collection:
+    get:
+      tags:
+      - User
+      summary: User Collection Bids
+      operationId: getUserCollectionBids
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User-owned collection bids.
+  /api/v1/user/bids/nft:
+    get:
+      tags:
+      - User
+      summary: User NFT Bids
+      operationId: getUserNftBids
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User-owned single-NFT bids.
+  /api/v1/user/bids/trait:
+    get:
+      tags:
+      - User
+      summary: User Trait Bids
+      operationId: getUserTraitBids
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User-owned trait bids.
+  /api/v1/user/escrow:
+    get:
+      tags:
+      - User
+      summary: User Escrow Accounts
+      operationId: getUserEscrowAccounts
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Shared escrow account balances for the wallet.
+  /api/v1/user/inventory/{slug}:
+    get:
+      tags:
+      - User
+      summary: User Inventory for Collection
+      operationId: getUserInventoryForCollection
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Inventory held by the wallet in the specified collection.
+  /api/v1/user/portfolio:
+    get:
+      tags:
+      - User
+      summary: User Collection Portfolio
+      operationId: getUserPortfolio
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aggregated collection portfolio holdings and valuations.
+  /api/v1/user/pools/tswap:
+    get:
+      tags:
+      - User
+      summary: User TSwap Pools
+      operationId: getUserTswapPools
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: TSwap pools owned by the wallet.
+  /api/v1/user/pools/tamm:
+    get:
+      tags:
+      - User
+      summary: User TAmm Pools
+      operationId: getUserTammPools
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: TAmm pools owned by the wallet.
+  /api/v1/user/transactions:
+    get:
+      tags:
+      - User
+      summary: User Transactions
+      operationId: getUserTransactions
+      parameters:
+      - name: wallet
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Marketplace transactions for the wallet.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key
