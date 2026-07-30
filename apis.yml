@@ -1,102 +1,316 @@
 aid: tensor
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tensor.png
 url: https://raw.githubusercontent.com/api-evangelist/tensor/refs/heads/main/apis.yml
 apis:
-  - aid: tensor:tensor-api
-    name: Tensor API
-    tags:
-      - NFT
-      - Marketplace
-      - Solana
-      - Blockchain
-      - Web3
-      - Trading
-      - Collections
-      - Listings
-      - Bids
-      - Read
-    humanURL: https://dev.tensor.trade/reference
-    baseURL: https://api.mainnet.tensordev.io
-    properties:
-      - url: https://dev.tensor.trade/reference
-        type: Documentation
-      - url: https://dev.tensor.trade/docs/authentication
-        type: Documentation
-      - url: openapi/tensor-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/tensor-collection-schema.json
-        type: JSONSchema
-      - url: json-schema/tensor-listing-schema.json
-        type: JSONSchema
-      - url: json-schema/tensor-bid-schema.json
-        type: JSONSchema
-      - url: json-schema/tensor-mint-schema.json
-        type: JSONSchema
-      - url: json-schema/tensor-pool-schema.json
-        type: JSONSchema
-      - url: json-ld/tensor-context.jsonld
-        type: JSONLD
-      - url: examples/tensor-collection-find-example.json
-        type: Examples
-      - url: examples/tensor-active-listings-example.json
-        type: Examples
-    description: >-
-      Read API surface for the Tensor marketplace covering collections, NFT mint metadata, active listings, bids
-      (collection-wide, single-NFT, trait), TSwap and TAmm pool state, user portfolios, transaction history, royalty
-      enforcement metadata, priority fee oracle, and whitelist verification. Authenticate via the `x-tensor-api-key`
-      header issued through the Tensor Developer Hub.
-  - aid: tensor:tensor-tx-api
-    name: Tensor Transaction API
-    tags:
-      - NFT
-      - Marketplace
-      - Solana
-      - Blockchain
-      - Web3
-      - Trading
-      - Transactions
-      - Listings
-      - Bids
-      - Write
-    humanURL: https://dev.tensor.trade/reference
-    baseURL: https://api.mainnet.tensordev.io
-    properties:
-      - url: https://dev.tensor.trade/reference
-        type: Documentation
-      - url: openapi/tensor-tx-api-openapi.yml
-        type: OpenAPI
-      - url: examples/tensor-tx-list-example.json
-        type: Examples
-      - url: examples/tensor-tx-buy-example.json
-        type: Examples
-    description: >-
-      Server-side transaction construction API that returns base64-encoded unsigned Solana transactions for the
-      canonical Tensor marketplace flows — list, delist, edit listing, buy, place/accept/cancel collection bid,
-      single-NFT bid, trait bid, deposit/withdraw escrow, create/edit/close AMM pool. Clients sign locally with the
-      user's wallet and submit. Covers standard NFTs, programmable NFTs (pNFT), and compressed NFTs (cNFT).
-  - aid: tensor:tensor-websocket-api
-    name: Tensor WebSocket API
-    tags:
-      - NFT
-      - Marketplace
-      - Solana
-      - Blockchain
-      - Web3
-      - Realtime
-      - Streaming
-      - WebSocket
-      - Events
-    humanURL: https://dev.tensor.trade/reference
-    baseURL: wss://api.mainnet.tensordev.io
-    properties:
-      - url: https://dev.tensor.trade/reference
-        type: Documentation
-      - url: asyncapi/tensor-websocket-api-asyncapi.yml
-        type: AsyncAPI
-    description: >-
-      Subscription-based realtime stream of Tensor marketplace events. Channels include `newTransaction` (every
-      confirmed marketplace action), `ammOrderUpdate` / `ammOrderUpdateAll` (TSwap and TAmm pool state),
-      `tcompBidUpdate` / `tcompBidUpdateAll` (compressed-NFT collection bids), `ping`, and `unsubscribe`. Used to power
-      floor-price feeds, sales bots, and order-book mirroring.
+- aid: tensor:tensor-websocket-api
+  name: Tensor WebSocket API
+  tags:
+  - NFT
+  - Marketplace
+  - Solana
+  - Blockchain
+  - Web3
+  - Realtime
+  - Streaming
+  - WebSocket
+  - Events
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: wss://api.mainnet.tensordev.io
+  properties:
+  - url: https://dev.tensor.trade/reference
+    type: Documentation
+  - url: asyncapi/tensor-websocket-api-asyncapi.yml
+    type: AsyncAPI
+  description: >-
+    Subscription-based realtime stream of Tensor marketplace events. Channels include `newTransaction`
+    (every confirmed marketplace action), `ammOrderUpdate` / `ammOrderUpdateAll` (TSwap and TAmm pool
+    state), `tcompBidUpdate` / `tcompBidUpdateAll` (compressed-NFT collection bids), `ping`, and `unsubscribe`.
+    Used to power floor-price feeds, sales bots, and order-book mirroring.
+- aid: tensor:tensor-bids-api
+  name: Tensor Bids API
+  description: The Bids API from Tensor — 8 operation(s) for bids.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - Bids
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-bids-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-collections-api
+  name: Tensor Collections API
+  description: The Collections API from Tensor — 5 operation(s) for collections.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-collections-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-escrow-api
+  name: Tensor Escrow API
+  description: The Escrow API from Tensor — 2 operation(s) for escrow.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - Escrow
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-escrow-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-listings-api
+  name: Tensor Listings API
+  description: The Listings API from Tensor — 6 operation(s) for listings.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-listings-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-nfts-api
+  name: Tensor NFTs API
+  description: The NFTs API from Tensor — 3 operation(s) for nfts.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - NFTs
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-nfts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-pools-api
+  name: Tensor Pools API
+  description: The Pools API from Tensor — 7 operation(s) for pools.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-pools-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-user-api
+  name: Tensor User API
+  description: The User API from Tensor — 10 operation(s) for user.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-user-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-utility-api
+  name: Tensor Utility API
+  description: The Utility API from Tensor — 6 operation(s) for utility.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: https://api.mainnet.tensordev.io
+  tags:
+  - Utility
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-utility-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/tensor-agentic-access.yml
