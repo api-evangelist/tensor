@@ -1,0 +1,379 @@
+openapi: 3.1.0
+info:
+  title: Tensor API
+  version: '1.0'
+  description: |
+    Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
+    and TAmm pool state, user portfolios, transaction history, royalty enforcement
+    metadata, priority fee oracle, and whitelist verification.
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+    Tensor Developer Hub.
+
+    Operation paths in this spec are illustrative resource-oriented routes mirroring
+    the published reference at https://dev.tensor.trade/reference. Consult the live
+    reference for canonical request and response payload field names.
+  termsOfService: https://tensor.trade/legal/terms-of-service
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+  license:
+    name: Proprietary
+    url: https://tensor.trade/legal/terms-of-service
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Collections
+- name: NFTs
+- name: Listings
+- name: Bids
+- name: Pools
+- name: User
+- name: Utility
+paths:
+  /api/v1/collections/find:
+    get:
+      tags: [Collections]
+      summary: Find Any Collection
+      operationId: findCollection
+      description: Search verified and unverified collections by slug, name, or on-chain identifier.
+      parameters:
+      - { name: query, in: query, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: A list of matching collections.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Collection' } }
+  /api/v1/collections/verified:
+    get:
+      tags: [Collections]
+      summary: Get Verified Collections
+      operationId: listVerifiedCollections
+      responses:
+        '200':
+          description: Verified collections.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Collection' } }
+  /api/v1/collections/{slug}/traits:
+    get:
+      tags: [Collections]
+      summary: Collection Traits
+      operationId: getCollectionTraits
+      parameters:
+      - { name: slug, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Trait dictionary for the collection. }
+  /api/v1/collections/search:
+    get:
+      tags: [Collections]
+      summary: Search Collections
+      operationId: searchCollections
+      parameters:
+      - { name: q, in: query, schema: { type: string } }
+      - { name: limit, in: query, schema: { type: integer, default: 50 } }
+      responses:
+        '200':
+          description: Search results.
+  /api/v1/collections/by-nfts:
+    get:
+      tags: [Collections]
+      summary: Get Collections by NFTs
+      operationId: getCollectionsByNfts
+      parameters:
+      - { name: mints, in: query, required: true, schema: { type: array, items: { type: string } }, style: form, explode: false }
+      responses:
+        '200': { description: Collections for the supplied mints. }
+  /api/v1/mints/info:
+    get:
+      tags: [NFTs]
+      summary: NFTs Info
+      operationId: getMintsInfo
+      parameters:
+      - { name: mints, in: query, required: true, schema: { type: array, items: { type: string } }, style: form, explode: false }
+      responses:
+        '200':
+          description: Mint metadata for each requested NFT.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Mint' } }
+  /api/v1/collections/{slug}/mints:
+    get:
+      tags: [NFTs]
+      summary: NFTs by Collection
+      operationId: getNftsByCollection
+      parameters:
+      - { name: slug, in: path, required: true, schema: { type: string } }
+      - { name: limit, in: query, schema: { type: integer, default: 100 } }
+      - { name: cursor, in: query, schema: { type: string } }
+      responses:
+        '200': { description: Paginated mints in the collection. }
+  /api/v1/collections/{slug}/mint-list:
+    get:
+      tags: [NFTs]
+      summary: Mint List
+      operationId: getMintList
+      parameters:
+      - { name: slug, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Complete list of mints in the collection. }
+  /api/v1/listings:
+    get:
+      tags: [Listings]
+      summary: Active Listings
+      operationId: listActiveListings
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      - { name: sortBy, in: query, schema: { type: string, enum: [PriceAsc, PriceDesc, RankAsc, RankDesc, ListedDesc] } }
+      - { name: limit, in: query, schema: { type: integer, default: 50 } }
+      - { name: cursor, in: query, schema: { type: string } }
+      responses:
+        '200':
+          description: Active listings for the collection.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Listing' } }
+  /api/v1/collections/{slug}/activity:
+    get:
+      tags: [Listings]
+      summary: Collection Transaction History
+      operationId: getCollectionActivity
+      parameters:
+      - { name: slug, in: path, required: true, schema: { type: string } }
+      - { name: types, in: query, schema: { type: array, items: { type: string } }, style: form, explode: false }
+      responses:
+        '200': { description: Recent collection activity (sales, listings, delists, bids). }
+  /api/v1/bids/collection:
+    get:
+      tags: [Bids]
+      summary: Collection Bids
+      operationId: getCollectionBids
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Collection-wide bids.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Bid' } }
+  /api/v1/bids/single-nft:
+    get:
+      tags: [Bids]
+      summary: Single NFT Bids
+      operationId: getSingleNftBids
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Bids targeting a single NFT mint. }
+  /api/v1/bids/trait:
+    get:
+      tags: [Bids]
+      summary: Trait Bids
+      operationId: getTraitBids
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      - { name: trait, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Bids filtered by trait value. }
+  /api/v1/pools/tswap:
+    get:
+      tags: [Pools]
+      summary: TSwap Pools
+      operationId: getTswapPools
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: TensorSwap (v1) pools for the collection.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Pool' } }
+  /api/v1/pools/tamm:
+    get:
+      tags: [Pools]
+      summary: TAmm Pools
+      operationId: getTammPools
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: TensorAMM (v2) pools for the collection.
+  /api/v1/user/listings:
+    get:
+      tags: [User]
+      summary: User Listings
+      operationId: getUserListings
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Active listings owned by the wallet. }
+  /api/v1/user/bids/collection:
+    get:
+      tags: [User]
+      summary: User Collection Bids
+      operationId: getUserCollectionBids
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: User-owned collection bids. }
+  /api/v1/user/bids/nft:
+    get:
+      tags: [User]
+      summary: User NFT Bids
+      operationId: getUserNftBids
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: User-owned single-NFT bids. }
+  /api/v1/user/bids/trait:
+    get:
+      tags: [User]
+      summary: User Trait Bids
+      operationId: getUserTraitBids
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: User-owned trait bids. }
+  /api/v1/user/escrow:
+    get:
+      tags: [User]
+      summary: User Escrow Accounts
+      operationId: getUserEscrowAccounts
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Shared escrow account balances for the wallet. }
+  /api/v1/user/inventory/{slug}:
+    get:
+      tags: [User]
+      summary: User Inventory for Collection
+      operationId: getUserInventoryForCollection
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      - { name: slug, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Inventory held by the wallet in the specified collection. }
+  /api/v1/user/portfolio:
+    get:
+      tags: [User]
+      summary: User Collection Portfolio
+      operationId: getUserPortfolio
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Aggregated collection portfolio holdings and valuations. }
+  /api/v1/user/pools/tswap:
+    get:
+      tags: [User]
+      summary: User TSwap Pools
+      operationId: getUserTswapPools
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: TSwap pools owned by the wallet. }
+  /api/v1/user/pools/tamm:
+    get:
+      tags: [User]
+      summary: User TAmm Pools
+      operationId: getUserTammPools
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: TAmm pools owned by the wallet. }
+  /api/v1/user/transactions:
+    get:
+      tags: [User]
+      summary: User Transactions
+      operationId: getUserTransactions
+      parameters:
+      - { name: wallet, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Marketplace transactions for the wallet. }
+  /api/v1/mints/refresh-metadata:
+    post:
+      tags: [Utility]
+      summary: Refresh Mint Metadata
+      operationId: refreshMintMetadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mints: { type: array, items: { type: string } }
+      responses:
+        '202': { description: Refresh queued. }
+  /api/v1/mints/refresh-rarities:
+    post:
+      tags: [Utility]
+      summary: Refresh Mint Rarities
+      operationId: refreshMintRarities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug: { type: string }
+      responses:
+        '202': { description: Refresh queued. }
+  /api/v1/mint-proof:
+    get:
+      tags: [Utility]
+      summary: Mint Proof
+      operationId: getMintProof
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: whitelist, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Merkle proof for inclusion in the collection whitelist. }
+  /api/v1/bids/trait-attributes:
+    get:
+      tags: [Utility]
+      summary: Trait Bid Attributes
+      operationId: getTraitBidAttributes
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Available trait/value pairs that can be bid against. }
+  /api/v1/whitelist/{address}:
+    get:
+      tags: [Utility]
+      summary: Whitelist Info
+      operationId: getWhitelistInfo
+      parameters:
+      - { name: address, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: On-chain whitelist program account. }
+  /api/v1/priority-fees:
+    get:
+      tags: [Utility]
+      summary: Priority Fees
+      operationId: getPriorityFees
+      responses:
+        '200': { description: Recommended Solana priority fee tiers for marketplace transactions. }
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key
+  schemas:
+    Collection:
+      $ref: '../json-schema/tensor-collection-schema.json'
+    Listing:
+      $ref: '../json-schema/tensor-listing-schema.json'
+    Bid:
+      $ref: '../json-schema/tensor-bid-schema.json'
+    Mint:
+      $ref: '../json-schema/tensor-mint-schema.json'
+    Pool:
+      $ref: '../json-schema/tensor-pool-schema.json'

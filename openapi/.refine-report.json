@@ -1,0 +1,28 @@
+{
+  "provider": "tensor",
+  "sources": [
+    "tensor-bids-api-openapi.yml",
+    "tensor-collections-api-openapi.yml",
+    "tensor-escrow-api-openapi.yml",
+    "tensor-listings-api-openapi.yml",
+    "tensor-nfts-api-openapi.yml",
+    "tensor-pools-api-openapi.yml",
+    "tensor-user-api-openapi.yml",
+    "tensor-utility-api-openapi.yml"
+  ],
+  "outputs": [
+    "tensor-bids-api-openapi.yml",
+    "tensor-collections-api-openapi.yml",
+    "tensor-escrow-api-openapi.yml",
+    "tensor-listings-api-openapi.yml",
+    "tensor-nfts-api-openapi.yml",
+    "tensor-pools-api-openapi.yml",
+    "tensor-user-api-openapi.yml",
+    "tensor-utility-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

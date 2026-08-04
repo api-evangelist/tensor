@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Tensor Transaction (TX) API
+  version: '1.0'
+  description: |
+    Server-side transaction construction API that returns base64-encoded unsigned
+    Solana transactions for the Tensor marketplace flows. Clients sign with the
+    user's wallet and submit to a Solana RPC endpoint.
+
+    Operations cover legacy NFTs, programmable NFTs (pNFT), and Bubblegum
+    compressed NFTs (cNFT). Endpoints encapsulate priority fees, royalty payments,
+    Anchor IDL encoding, escrow operations, and AMM bonding-curve interactions so
+    that callers do not need to construct Solana instructions by hand.
+
+    All endpoints require an `x-tensor-api-key` header. Request access at
+    https://dev.tensor.trade and follow the Airtable signup flow linked from the
+    Tensor Developer Hub.
+  contact:
+    name: Tensor Developer Hub
+    url: https://dev.tensor.trade
+servers:
+- url: https://api.mainnet.tensordev.io
+  description: Mainnet TX construction API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Listings
+- name: Bids
+- name: Pools
+- name: Escrow
+paths:
+  /api/v1/tx/list:
+    get:
+      tags: [Listings]
+      summary: Build List NFT Transaction
+      operationId: buildListTx
+      description: Construct a transaction to list an NFT, pNFT, or cNFT for sale.
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: price, in: query, required: true, schema: { type: string, description: 'Price in lamports.' } }
+      - { name: blockhash, in: query, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/edit-listing:
+    get:
+      tags: [Listings]
+      summary: Build Edit Listing Transaction
+      operationId: buildEditListingTx
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: price, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/delist:
+    get:
+      tags: [Listings]
+      summary: Build Delist Transaction
+      operationId: buildDelistTx
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/buy:
+    get:
+      tags: [Listings]
+      summary: Build Buy Transaction
+      operationId: buildBuyTx
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: buyer, in: query, required: true, schema: { type: string } }
+      - { name: maxPrice, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/place-collection-bid:
+    get:
+      tags: [Bids]
+      summary: Build Place Collection Bid Transaction
+      operationId: buildPlaceCollectionBidTx
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      - { name: bidder, in: query, required: true, schema: { type: string } }
+      - { name: price, in: query, required: true, schema: { type: string } }
+      - { name: quantity, in: query, schema: { type: integer, default: 1 } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/place-single-nft-bid:
+    get:
+      tags: [Bids]
+      summary: Build Place Single-NFT Bid Transaction
+      operationId: buildPlaceSingleNftBidTx
+      parameters:
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: bidder, in: query, required: true, schema: { type: string } }
+      - { name: price, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/place-trait-bid:
+    get:
+      tags: [Bids]
+      summary: Build Place Trait Bid Transaction
+      operationId: buildPlaceTraitBidTx
+      parameters:
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      - { name: bidder, in: query, required: true, schema: { type: string } }
+      - { name: trait, in: query, required: true, schema: { type: string } }
+      - { name: value, in: query, required: true, schema: { type: string } }
+      - { name: price, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/accept-bid:
+    get:
+      tags: [Bids]
+      summary: Build Accept Bid Transaction
+      operationId: buildAcceptBidTx
+      parameters:
+      - { name: bid, in: query, required: true, schema: { type: string } }
+      - { name: mint, in: query, required: true, schema: { type: string } }
+      - { name: seller, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/cancel-bid:
+    get:
+      tags: [Bids]
+      summary: Build Cancel Bid Transaction
+      operationId: buildCancelBidTx
+      parameters:
+      - { name: bid, in: query, required: true, schema: { type: string } }
+      - { name: bidder, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/pool/create:
+    get:
+      tags: [Pools]
+      summary: Build Create Pool Transaction
+      operationId: buildCreatePoolTx
+      description: Open a TensorAMM v2 bonding-curve pool.
+      parameters:
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: slug, in: query, required: true, schema: { type: string } }
+      - { name: poolType, in: query, required: true, schema: { type: string, enum: [Buy, Sell, TwoSided] } }
+      - { name: curveType, in: query, required: true, schema: { type: string, enum: [Linear, Exponential] } }
+      - { name: startingPrice, in: query, required: true, schema: { type: string } }
+      - { name: delta, in: query, required: true, schema: { type: string } }
+      - { name: mmFeeBps, in: query, schema: { type: integer } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/pool/edit:
+    get:
+      tags: [Pools]
+      summary: Build Edit Pool Transaction
+      operationId: buildEditPoolTx
+      parameters:
+      - { name: pool, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: startingPrice, in: query, schema: { type: string } }
+      - { name: delta, in: query, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/pool/close:
+    get:
+      tags: [Pools]
+      summary: Build Close Pool Transaction
+      operationId: buildClosePoolTx
+      parameters:
+      - { name: pool, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/pool/deposit:
+    get:
+      tags: [Pools]
+      summary: Build Pool Deposit Transaction
+      operationId: buildPoolDepositTx
+      parameters:
+      - { name: pool, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: amount, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/pool/withdraw:
+    get:
+      tags: [Pools]
+      summary: Build Pool Withdraw Transaction
+      operationId: buildPoolWithdrawTx
+      parameters:
+      - { name: pool, in: query, required: true, schema: { type: string } }
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: amount, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/escrow/deposit:
+    get:
+      tags: [Escrow]
+      summary: Build Shared Escrow Deposit Transaction
+      operationId: buildEscrowDepositTx
+      parameters:
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: amount, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+  /api/v1/tx/escrow/withdraw:
+    get:
+      tags: [Escrow]
+      summary: Build Shared Escrow Withdraw Transaction
+      operationId: buildEscrowWithdrawTx
+      parameters:
+      - { name: owner, in: query, required: true, schema: { type: string } }
+      - { name: amount, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/UnsignedTx' }
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tensor-api-key
+  responses:
+    UnsignedTx:
+      description: Base64-encoded unsigned Solana transaction ready for client-side signing.
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [txs]
+            properties:
+              txs:
+                type: array
+                items:
+                  type: object
+                  required: [tx]
+                  properties:
+                    tx:
+                      type: string
+                      description: Base64-encoded serialized Solana versioned transaction.
+                    lastValidBlockHeight:
+                      type: integer
+              metadata:
+                type: object
+                additionalProperties: true
