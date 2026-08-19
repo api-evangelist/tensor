@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids NFTs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NFTs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "NFTs Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/mints/info",
+            "params": [
+              {
+                "name": "mints",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "NFTs Info"
+        },
+        {
+          "info": {
+            "name": "NFTs by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/:slug/mints",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "NFTs by Collection"
+        },
+        {
+          "info": {
+            "name": "Mint List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/:slug/mint-list",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mint List"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

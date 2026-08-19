@@ -1,0 +1,340 @@
+{
+  "item": [
+    {
+      "id": "18f73da8-208b-4f65-87db-eeb8d30e9558",
+      "name": "NFTs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3875fae-9380-40cc-a7d0-fe6df67e6822",
+          "name": "NFTs Info",
+          "request": {
+            "name": "NFTs Info",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "mints",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mints",
+                  "value": "<string>,<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "167265f9-16bb-4f21-b4ae-47c181bdfbb3",
+              "name": "Mint metadata for each requested NFT.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "mints",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mints",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"value\": \"reference ../json-schema/tensor-mint-schema.json not found in the OpenAPI spec\"\n  },\n  {\n    \"value\": \"reference ../json-schema/tensor-mint-schema.json not found in the OpenAPI spec\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9c81212-59f4-4e96-905b-4932488ef37a",
+          "name": "NFTs by Collection",
+          "request": {
+            "name": "NFTs by Collection",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "collections",
+                ":slug",
+                "mints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d89c88be-78a1-4f8d-be46-3c6f7266bfb8",
+              "name": "Paginated mints in the collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "collections",
+                    ":slug",
+                    "mints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6620e0f-7a38-4e1c-8434-a45323669cd6",
+          "name": "Mint List",
+          "request": {
+            "name": "Mint List",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "collections",
+                ":slug",
+                "mint-list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a87244a2-842e-47c7-8ee6-dc798bd58210",
+              "name": "Complete list of mints in the collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "collections",
+                    ":slug",
+                    "mint-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mainnet.tensordev.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-tensor-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "83cf7681-5e1d-4a50-a686-023910f7e29e",
+    "name": "Tensor Bids NFTs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,\nNFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap\nand TAmm pool state, user portfolios, transaction history, royalty enforcement\nmetadata, priority fee oracle, and whitelist verification.\n\nAll endpoints require an `x-tensor-api-key` header. Request access at\nhttps://dev.tensor.trade and follow the Airtable signup flow linked from the\nTensor Developer Hub.\n\nOperation paths in this spec are illustrative resource-oriented routes mirroring\nthe published reference at https://dev.tensor.trade/reference. Consult the live\nreference for canonical request and response payload field names.\n\n\nContact Support:\n Name: Tensor Developer Hub",
+      "type": "text/plain"
+    }
+  }
+}

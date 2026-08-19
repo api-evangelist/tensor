@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids User API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "User Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/listings",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User Listings"
+        },
+        {
+          "info": {
+            "name": "User Collection Bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/bids/collection",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User Collection Bids"
+        },
+        {
+          "info": {
+            "name": "User NFT Bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/bids/nft",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User NFT Bids"
+        },
+        {
+          "info": {
+            "name": "User Trait Bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/bids/trait",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User Trait Bids"
+        },
+        {
+          "info": {
+            "name": "User Escrow Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/escrow",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User Escrow Accounts"
+        },
+        {
+          "info": {
+            "name": "User Inventory for Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/inventory/:slug",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "User Inventory for Collection"
+        },
+        {
+          "info": {
+            "name": "User Collection Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/portfolio",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User Collection Portfolio"
+        },
+        {
+          "info": {
+            "name": "User TSwap Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/pools/tswap",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User TSwap Pools"
+        },
+        {
+          "info": {
+            "name": "User TAmm Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/pools/tamm",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User TAmm Pools"
+        },
+        {
+          "info": {
+            "name": "User Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/user/transactions",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "User Transactions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

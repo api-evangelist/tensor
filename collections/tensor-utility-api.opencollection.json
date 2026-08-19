@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids Utility API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Refresh Mint Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mainnet.tensordev.io/api/v1/mints/refresh-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh Mint Metadata"
+        },
+        {
+          "info": {
+            "name": "Refresh Mint Rarities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mainnet.tensordev.io/api/v1/mints/refresh-rarities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh Mint Rarities"
+        },
+        {
+          "info": {
+            "name": "Mint Proof",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/mint-proof",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "whitelist",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Mint Proof"
+        },
+        {
+          "info": {
+            "name": "Trait Bid Attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/bids/trait-attributes",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Trait Bid Attributes"
+        },
+        {
+          "info": {
+            "name": "Whitelist Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/whitelist/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Whitelist Info"
+        },
+        {
+          "info": {
+            "name": "Priority Fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/priority-fees"
+          },
+          "docs": "Priority Fees"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

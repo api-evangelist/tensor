@@ -1,0 +1,840 @@
+{
+  "item": [
+    {
+      "id": "0c406cba-1c4e-4be4-b3f7-79aba3ca14db",
+      "name": "Pools",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76053e64-9697-40f8-9bc8-2e133e06d240",
+          "name": "TSwap Pools",
+          "request": {
+            "name": "TSwap Pools",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pools",
+                "tswap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "045a5189-8cf7-4298-937e-60d1fae3ed9f",
+              "name": "TensorSwap (v1) pools for the collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pools",
+                    "tswap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"value\": \"reference ../json-schema/tensor-pool-schema.json not found in the OpenAPI spec\"\n  },\n  {\n    \"value\": \"reference ../json-schema/tensor-pool-schema.json not found in the OpenAPI spec\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95a4e9f3-1ab8-4cfd-bba9-d50ede4ee928",
+          "name": "TAmm Pools",
+          "request": {
+            "name": "TAmm Pools",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pools",
+                "tamm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "000e6140-4570-4b5a-872e-4094d468492d",
+              "name": "TensorAMM (v2) pools for the collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pools",
+                    "tamm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26012072-eb7c-466a-a945-72be21dbb810",
+          "name": "Build Create Pool Transaction",
+          "request": {
+            "name": "Build Create Pool Transaction",
+            "description": {
+              "content": "Open a TensorAMM v2 bonding-curve pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "pool",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "poolType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "curveType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startingPrice",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "delta",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "mmFeeBps",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d01a8abd-7e3a-4266-aa1f-51cd6212928c",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "pool",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "poolType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "curveType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startingPrice",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "delta",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mmFeeBps",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 5833\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 1412\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1057eed2-eaea-43a8-b042-2db9ac39b335",
+          "name": "Build Edit Pool Transaction",
+          "request": {
+            "name": "Build Edit Pool Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "pool",
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pool",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startingPrice",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "delta",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "597ea120-477b-44ac-83ce-0f3b89a5c7a8",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "pool",
+                    "edit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startingPrice",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "delta",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 2023\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 428\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 340.7401803305421,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a84ae6b6-3757-44aa-850a-a7e2d643ee6d",
+          "name": "Build Close Pool Transaction",
+          "request": {
+            "name": "Build Close Pool Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "pool",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pool",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23fc2641-6d76-4d29-8a8b-2aabfb40d3c6",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "pool",
+                    "close"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 2023\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 428\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 340.7401803305421,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4169606-e12c-41e7-a18b-d02aef5f3820",
+          "name": "Build Pool Deposit Transaction",
+          "request": {
+            "name": "Build Pool Deposit Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "pool",
+                "deposit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pool",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2563b70e-b01e-48cf-98d6-60cd255eee3f",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "pool",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 2023\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 428\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 340.7401803305421,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99e1dc26-b4e4-4b7f-b576-390db0d61048",
+          "name": "Build Pool Withdraw Transaction",
+          "request": {
+            "name": "Build Pool Withdraw Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "pool",
+                "withdraw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pool",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "237ec43a-8a0e-4fc8-913d-fb6f239ca46e",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "pool",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 2023\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 428\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 340.7401803305421,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mainnet.tensordev.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-tensor-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c74b3cc-deb5-41ff-b718-f863abea411b",
+    "name": "Tensor Bids Pools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,\nNFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap\nand TAmm pool state, user portfolios, transaction history, royalty enforcement\nmetadata, priority fee oracle, and whitelist verification.\n\nAll endpoints require an `x-tensor-api-key` header. Request access at\nhttps://dev.tensor.trade and follow the Airtable signup flow linked from the\nTensor Developer Hub.\n\nOperation paths in this spec are illustrative resource-oriented routes mirroring\nthe published reference at https://dev.tensor.trade/reference. Consult the live\nreference for canonical request and response payload field names.\n\n\nContact Support:\n Name: Tensor Developer Hub",
+      "type": "text/plain"
+    }
+  }
+}

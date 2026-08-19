@@ -1,0 +1,259 @@
+{
+  "item": [
+    {
+      "id": "7602b2b7-6c34-4969-8c1e-38b316602318",
+      "name": "Escrow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d67ea7a1-2ff0-4ab5-b433-186c4f6c6231",
+          "name": "Build Shared Escrow Deposit Transaction",
+          "request": {
+            "name": "Build Shared Escrow Deposit Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "escrow",
+                "deposit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28f688d5-d23e-49a7-b844-a1e9260a6513",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "escrow",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 9167\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 3815\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5150.150033238412,\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c8549b5-c349-4b90-9bdb-df18d855fe75",
+          "name": "Build Shared Escrow Withdraw Transaction",
+          "request": {
+            "name": "Build Shared Escrow Withdraw Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "escrow",
+                "withdraw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c2ca31f-666d-41f5-8246-b05ae591e35c",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "escrow",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 8306\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 222\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mainnet.tensordev.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-tensor-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4ce5db39-5b08-4ef1-8547-9aac37b0d86d",
+    "name": "Tensor Bids Escrow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,\nNFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap\nand TAmm pool state, user portfolios, transaction history, royalty enforcement\nmetadata, priority fee oracle, and whitelist verification.\n\nAll endpoints require an `x-tensor-api-key` header. Request access at\nhttps://dev.tensor.trade and follow the Airtable signup flow linked from the\nTensor Developer Hub.\n\nOperation paths in this spec are illustrative resource-oriented routes mirroring\nthe published reference at https://dev.tensor.trade/reference. Consult the live\nreference for canonical request and response payload field names.\n\n\nContact Support:\n Name: Tensor Developer Hub",
+      "type": "text/plain"
+    }
+  }
+}

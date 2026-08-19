@@ -1,0 +1,721 @@
+{
+  "item": [
+    {
+      "id": "bb6b443e-43ae-40b8-b3fb-42bd0f45cadc",
+      "name": "Listings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b96ccbcd-5a70-4ca2-801b-f052f7aa8807",
+          "name": "Active Listings",
+          "request": {
+            "name": "Active Listings",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2d9fbb3-0d61-4ff9-a483-62c61fec394c",
+              "name": "Active listings for the collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"value\": \"reference ../json-schema/tensor-listing-schema.json not found in the OpenAPI spec\"\n  },\n  {\n    \"value\": \"reference ../json-schema/tensor-listing-schema.json not found in the OpenAPI spec\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1309505a-7a8b-4c67-9a10-a2f518497a35",
+          "name": "Collection Transaction History",
+          "request": {
+            "name": "Collection Transaction History",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "collections",
+                ":slug",
+                "activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>,<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5aa14af6-6981-42c6-93d8-c47545f9bf7a",
+              "name": "Recent collection activity (sales",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "collections",
+                    ":slug",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "types",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0d09377-ef59-42ba-98c3-7716e6e7bea5",
+          "name": "Build List NFT Transaction",
+          "request": {
+            "name": "Build List NFT Transaction",
+            "description": {
+              "content": "Construct a transaction to list an NFT, pNFT, or cNFT for sale.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mint",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "price",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "blockhash",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22c1645d-3fe1-4402-8e79-e564e407919c",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blockhash",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 9125\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 5490\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67287ad1-ddcd-47a7-981d-eb92570c7f54",
+          "name": "Build Edit Listing Transaction",
+          "request": {
+            "name": "Build Edit Listing Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "edit-listing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mint",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "price",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4a5a8d1-33e7-4ac3-9db4-2f097840bc65",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "edit-listing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "price",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 691\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 5719\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5375.283730198071,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cbedad4-69e8-42d3-b583-4bef110b12b9",
+          "name": "Build Delist Transaction",
+          "request": {
+            "name": "Build Delist Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "delist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mint",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c30e2b3b-0336-4e12-af62-f607ab8c453e",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "delist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 691\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 5719\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5375.283730198071,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef6ae4da-4663-4fac-b8ff-b937c032833f",
+          "name": "Build Buy Transaction",
+          "request": {
+            "name": "Build Buy Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tx",
+                "buy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mint",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "buyer",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "maxPrice",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a24f4af5-05f6-4378-b597-98c290d06df3",
+              "name": "Base64-encoded unsigned Solana transaction ready for client-side signing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tx",
+                    "buy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPrice",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-tensor-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txs\": [\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 691\n    },\n    {\n      \"tx\": \"string\",\n      \"lastValidBlockHeight\": 5719\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5375.283730198071,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mainnet.tensordev.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-tensor-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6387272b-9876-4040-948b-51d42dfd43af",
+    "name": "Tensor Bids Listings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,\nNFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap\nand TAmm pool state, user portfolios, transaction history, royalty enforcement\nmetadata, priority fee oracle, and whitelist verification.\n\nAll endpoints require an `x-tensor-api-key` header. Request access at\nhttps://dev.tensor.trade and follow the Airtable signup flow linked from the\nTensor Developer Hub.\n\nOperation paths in this spec are illustrative resource-oriented routes mirroring\nthe published reference at https://dev.tensor.trade/reference. Consult the live\nreference for canonical request and response payload field names.\n\n\nContact Support:\n Name: Tensor Developer Hub",
+      "type": "text/plain"
+    }
+  }
+}

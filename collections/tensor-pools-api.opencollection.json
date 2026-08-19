@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids Pools API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TSwap Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/pools/tswap",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "TSwap Pools"
+        },
+        {
+          "info": {
+            "name": "TAmm Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/pools/tamm",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "TAmm Pools"
+        },
+        {
+          "info": {
+            "name": "Build Create Pool Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/create",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "curveType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startingPrice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mmFeeBps",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Open a TensorAMM v2 bonding-curve pool."
+        },
+        {
+          "info": {
+            "name": "Build Edit Pool Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/edit",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startingPrice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Edit Pool Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Close Pool Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/close",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Close Pool Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Pool Deposit Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/deposit",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Pool Deposit Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Pool Withdraw Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/pool/withdraw",
+            "params": [
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Pool Withdraw Transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

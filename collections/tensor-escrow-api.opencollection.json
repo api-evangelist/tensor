@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids Escrow API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Escrow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Build Shared Escrow Deposit Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/escrow/deposit",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Shared Escrow Deposit Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Shared Escrow Withdraw Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/escrow/withdraw",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Shared Escrow Withdraw Transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

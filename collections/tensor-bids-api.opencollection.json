@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bids",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Collection Bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/bids/collection",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Collection Bids"
+        },
+        {
+          "info": {
+            "name": "Single NFT Bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/bids/single-nft",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Single NFT Bids"
+        },
+        {
+          "info": {
+            "name": "Trait Bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/bids/trait",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Trait Bids"
+        },
+        {
+          "info": {
+            "name": "Build Place Collection Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/place-collection-bid",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Place Collection Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Place Single-NFT Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/place-single-nft-bid",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Place Single-NFT Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Place Trait Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/place-trait-bid",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Place Trait Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Accept Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/accept-bid",
+            "params": [
+              {
+                "name": "bid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "seller",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Accept Bid Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Cancel Bid Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/cancel-bid",
+            "params": [
+              {
+                "name": "bid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bidder",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Cancel Bid Transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

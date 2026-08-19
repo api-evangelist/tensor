@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids Listings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Active Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/listings",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Active Listings"
+        },
+        {
+          "info": {
+            "name": "Collection Transaction History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/:slug/activity",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Collection Transaction History"
+        },
+        {
+          "info": {
+            "name": "Build List NFT Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/list",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "blockhash",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Construct a transaction to list an NFT, pNFT, or cNFT for sale."
+        },
+        {
+          "info": {
+            "name": "Build Edit Listing Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/edit-listing",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Edit Listing Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Delist Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/delist",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Delist Transaction"
+        },
+        {
+          "info": {
+            "name": "Build Buy Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/tx/buy",
+            "params": [
+              {
+                "name": "mint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "buyer",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxPrice",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Build Buy Transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

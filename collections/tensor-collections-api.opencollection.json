@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tensor Bids Collections API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tensor-api-key",
+      "value": "{{x-tensor-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find Any Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/find",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search verified and unverified collections by slug, name, or on-chain identifier."
+        },
+        {
+          "info": {
+            "name": "Get Verified Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/verified"
+          },
+          "docs": "Get Verified Collections"
+        },
+        {
+          "info": {
+            "name": "Collection Traits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/:slug/traits",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Collection Traits"
+        },
+        {
+          "info": {
+            "name": "Search Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Collections"
+        },
+        {
+          "info": {
+            "name": "Get Collections by NFTs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mainnet.tensordev.io/api/v1/collections/by-nfts",
+            "params": [
+              {
+                "name": "mints",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Collections by NFTs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
