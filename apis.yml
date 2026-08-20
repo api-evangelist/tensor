@@ -23,6 +23,16 @@ apis:
   - Solana
   - Blockchain
   - Web3
+  - Real-Time
+  - Streaming
+  - WebSocket
+  - Event
+  tags_raw:
+  - NFT
+  - Marketplace
+  - Solana
+  - Blockchain
+  - Web3
   - Realtime
   - Streaming
   - WebSocket
@@ -79,6 +89,8 @@ apis:
   humanURL: https://dev.tensor.trade/reference
   baseURL: https://api.mainnet.tensordev.io
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -181,6 +193,8 @@ apis:
   humanURL: https://dev.tensor.trade/reference
   baseURL: https://api.mainnet.tensordev.io
   tags:
+  - NFT
+  tags_raw:
   - NFTs
   properties:
   - type: OpenAPI
