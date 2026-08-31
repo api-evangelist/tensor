@@ -206,7 +206,7 @@ apis:
   humanURL: https://dev.tensor.trade/reference
   baseURL: https://api.mainnet.tensordev.io
   tags:
-  - NFT
+  - NFTs
   tags_raw:
   - NFTs
   properties:
