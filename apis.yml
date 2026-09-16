@@ -58,7 +58,8 @@ apis:
     type: Documentation
   - url: asyncapi/tensor-websocket-api-asyncapi.yml
     type: AsyncAPI
-  description: Subscription-based realtime stream of Tensor marketplace events. Channels include `newTransaction`
+  description: >-
+    Subscription-based realtime stream of Tensor marketplace events. Channels include `newTransaction`
     (every confirmed marketplace action), `ammOrderUpdate` / `ammOrderUpdateAll` (TSwap and TAmm pool
     state), `tcompBidUpdate` / `tcompBidUpdateAll` (compressed-NFT collection bids), `ping`, and `unsubscribe`.
     Used to power floor-price feeds, sales bots, and order-book mirroring.
@@ -200,42 +201,6 @@ apis:
     url: examples/tensor-tx-list-example.json
   - type: Examples
     url: examples/tensor-tx-buy-example.json
-- aid: tensor:tensor-nfts-api
-  name: Tensor NFTs API
-  description: The NFTs API from Tensor — 3 operation(s) for nfts.
-  humanURL: https://dev.tensor.trade/reference
-  baseURL: https://api.mainnet.tensordev.io
-  tags:
-  - NFT
-  tags_raw:
-  - NFTs
-  properties:
-  - type: OpenAPI
-    url: openapi/tensor-nfts-api-openapi.yml
-  - type: Documentation
-    url: https://dev.tensor.trade/reference
-  - type: Documentation
-    url: https://dev.tensor.trade/docs/authentication
-  - type: JSONSchema
-    url: json-schema/tensor-collection-schema.json
-  - type: JSONSchema
-    url: json-schema/tensor-listing-schema.json
-  - type: JSONSchema
-    url: json-schema/tensor-bid-schema.json
-  - type: JSONSchema
-    url: json-schema/tensor-mint-schema.json
-  - type: JSONSchema
-    url: json-schema/tensor-pool-schema.json
-  - type: JSONLD
-    url: json-ld/tensor-context.jsonld
-  - type: Examples
-    url: examples/tensor-collection-find-example.json
-  - type: Examples
-    url: examples/tensor-active-listings-example.json
-  - type: Examples
-    url: examples/tensor-tx-list-example.json
-  - type: Examples
-    url: examples/tensor-tx-buy-example.json
 - aid: tensor:tensor-pools-api
   name: Tensor Pools API
   description: The Pools API from Tensor — 7 operation(s) for pools.
@@ -314,6 +279,40 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/tensor-utility-api-openapi.yml
+  - type: Documentation
+    url: https://dev.tensor.trade/reference
+  - type: Documentation
+    url: https://dev.tensor.trade/docs/authentication
+  - type: JSONSchema
+    url: json-schema/tensor-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-bid-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-mint-schema.json
+  - type: JSONSchema
+    url: json-schema/tensor-pool-schema.json
+  - type: JSONLD
+    url: json-ld/tensor-context.jsonld
+  - type: Examples
+    url: examples/tensor-collection-find-example.json
+  - type: Examples
+    url: examples/tensor-active-listings-example.json
+  - type: Examples
+    url: examples/tensor-tx-list-example.json
+  - type: Examples
+    url: examples/tensor-tx-buy-example.json
+- aid: tensor:tensor-nf-ts-api
+  name: Tensor NF Ts API
+  description: The NF Ts API from Tensor — 3 operation(s) for nf ts.
+  humanURL: https://dev.tensor.trade/reference
+  baseURL: wss://api.mainnet.tensordev.io
+  tags:
+  - NF Ts
+  properties:
+  - type: OpenAPI
+    url: openapi/tensor-nf-ts-api-openapi.yml
   - type: Documentation
     url: https://dev.tensor.trade/reference
   - type: Documentation
