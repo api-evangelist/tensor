@@ -303,16 +303,16 @@ apis:
     url: examples/tensor-tx-list-example.json
   - type: Examples
     url: examples/tensor-tx-buy-example.json
-- aid: tensor:tensor-nf-ts-api
+- aid: tensor:tensor-nfts-api
   name: Tensor NF Ts API
-  description: The NF Ts API from Tensor — 3 operation(s) for nf ts.
+  description: The NFTs API from Tensor — 3 operation(s) for nfts.
   humanURL: https://dev.tensor.trade/reference
   baseURL: wss://api.mainnet.tensordev.io
   tags:
-  - NF Ts
+  - NFTs
   properties:
   - type: OpenAPI
-    url: openapi/tensor-nf-ts-api-openapi.yml
+    url: openapi/tensor-nfts-api-openapi.yml
   - type: Documentation
     url: https://dev.tensor.trade/reference
   - type: Documentation
