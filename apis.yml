@@ -309,6 +309,8 @@ apis:
   humanURL: https://dev.tensor.trade/reference
   baseURL: wss://api.mainnet.tensordev.io
   tags:
+  - NFT
+  tags_raw:
   - NFTs
   properties:
   - type: OpenAPI
