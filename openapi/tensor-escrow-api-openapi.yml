@@ -1,40 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Tensor Bids Escrow API
+  title: Tensor Transaction (TX) Escrow API
   version: '1.0'
-  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
+  description: 'Server-side transaction construction API that returns base64-encoded unsigned
 
-    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
-
-    and TAmm pool state, user portfolios, transaction history, royalty enforcement
-
-    metadata, priority fee oracle, and whitelist verification.
-
-
-    All endpoints require an `x-tensor-api-key` header. Request access at
-
-    https://dev.tensor.trade and follow the Airtable signup flow linked from the
-
-    Tensor Developer Hub.
-
-
-    Operation paths in this spec are illustrative resource-oriented routes mirroring
-
-    the published reference at https://dev.tensor.trade/reference. Consult the live
-
-    reference for canonical request and response payload field names.
-
-    '
-  termsOfService: https://tensor.trade/legal/terms-of-service
+    Solana transactions for the Tensor marketplace flows.'
   contact:
     name: Tensor Developer Hub
     url: https://dev.tensor.trade
-  license:
-    name: Proprietary
-    url: https://tensor.trade/legal/terms-of-service
 servers:
 - url: https://api.mainnet.tensordev.io
-  description: Mainnet REST API
+  description: Mainnet TX construction API
 security:
 - ApiKeyAuth: []
 tags:

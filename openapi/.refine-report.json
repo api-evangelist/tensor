@@ -1,28 +1,42 @@
 {
   "provider": "tensor",
   "sources": [
-    "tensor-bids-api-openapi.yml",
-    "tensor-collections-api-openapi.yml",
-    "tensor-escrow-api-openapi.yml",
-    "tensor-listings-api-openapi.yml",
-    "tensor-nfts-api-openapi.yml",
-    "tensor-pools-api-openapi.yml",
-    "tensor-user-api-openapi.yml",
-    "tensor-utility-api-openapi.yml"
+    "_original/tensor-api-openapi.yml",
+    "_original/tensor-tx-api-openapi.yml"
   ],
   "outputs": [
     "tensor-bids-api-openapi.yml",
     "tensor-collections-api-openapi.yml",
-    "tensor-escrow-api-openapi.yml",
     "tensor-listings-api-openapi.yml",
     "tensor-nfts-api-openapi.yml",
     "tensor-pools-api-openapi.yml",
     "tensor-user-api-openapi.yml",
-    "tensor-utility-api-openapi.yml"
+    "tensor-utility-api-openapi.yml",
+    "tensor-escrow-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tensor-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tensor-tx-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Bids' spans 2 source specs (tensor-api-openapi.yml, tensor-tx-api-openapi.yml): per-path servers applied",
+    "tag 'Listings' spans 2 source specs (tensor-api-openapi.yml, tensor-tx-api-openapi.yml): per-path servers applied",
+    "tag 'Pools' spans 2 source specs (tensor-api-openapi.yml, tensor-tx-api-openapi.yml): per-path servers applied",
+    "superseded outputs removed: tensor-nf-ts-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 9 total)"
+  ],
+  "skipped": [
+    "tensor-bids-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-escrow-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-listings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-nf-ts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-pools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tensor-utility-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,37 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Tensor Bids API
   version: '1.0'
-  description: 'Read-only REST surface for the Tensor Solana NFT marketplace. Covers collections,
-
-    NFT mint metadata, active listings, bids (collection / single-NFT / trait), TSwap
-
-    and TAmm pool state, user portfolios, transaction history, royalty enforcement
-
-    metadata, priority fee oracle, and whitelist verification.
-
-
-    All endpoints require an `x-tensor-api-key` header. Request access at
-
-    https://dev.tensor.trade and follow the Airtable signup flow linked from the
-
-    Tensor Developer Hub.
-
-
-    Operation paths in this spec are illustrative resource-oriented routes mirroring
-
-    the published reference at https://dev.tensor.trade/reference. Consult the live
-
-    reference for canonical request and response payload field names.
-
-    '
-  termsOfService: https://tensor.trade/legal/terms-of-service
   contact:
     name: Tensor Developer Hub
     url: https://dev.tensor.trade
-  license:
-    name: Proprietary
-    url: https://tensor.trade/legal/terms-of-service
+  description: 'Operations tagged Bids across 2 of this provider''s published API definitions: tensor-api-openapi.yml, tensor-tx-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.mainnet.tensordev.io
   description: Mainnet REST API
@@ -61,6 +35,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Bid'
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet REST API
   /api/v1/bids/single-nft:
     get:
       tags:
@@ -76,6 +53,9 @@ paths:
       responses:
         '200':
           description: Bids targeting a single NFT mint.
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet REST API
   /api/v1/bids/trait:
     get:
       tags:
@@ -96,6 +76,9 @@ paths:
       responses:
         '200':
           description: Bids filtered by trait value.
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet REST API
   /api/v1/tx/place-collection-bid:
     get:
       tags:
@@ -126,6 +109,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/UnsignedTx'
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet TX construction API
   /api/v1/tx/place-single-nft-bid:
     get:
       tags:
@@ -151,6 +137,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/UnsignedTx'
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet TX construction API
   /api/v1/tx/place-trait-bid:
     get:
       tags:
@@ -186,6 +175,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/UnsignedTx'
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet TX construction API
   /api/v1/tx/accept-bid:
     get:
       tags:
@@ -211,6 +203,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/UnsignedTx'
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet TX construction API
   /api/v1/tx/cancel-bid:
     get:
       tags:
@@ -231,6 +226,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/UnsignedTx'
+    servers:
+    - url: https://api.mainnet.tensordev.io
+      description: Mainnet TX construction API
 components:
   schemas:
     Bid:
@@ -265,3 +263,6 @@ components:
       type: apiKey
       in: header
       name: x-tensor-api-key
+x-refined-from:
+- tensor-api-openapi.yml
+- tensor-tx-api-openapi.yml
