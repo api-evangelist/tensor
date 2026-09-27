@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Tensor NF Ts API
+  title: Tensor NFTs API
   version: '1.0'
   description: Read-only REST surface for the Tensor Solana NFT marketplace.
   termsOfService: https://tensor.trade/legal/terms-of-service
