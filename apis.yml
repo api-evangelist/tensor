@@ -314,7 +314,7 @@ apis:
   name: Tensor NF Ts API
   description: The NFTs API from Tensor — 3 operation(s) for nfts.
   humanURL: https://dev.tensor.trade/reference
-  baseURL: wss://api.mainnet.tensordev.io
+  baseURL: https://api.mainnet.tensordev.io
   tags:
   - NFT
   tags_raw:
