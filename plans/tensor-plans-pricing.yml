@@ -62,3 +62,23 @@ sources:
 - https://docs.tensor.trade/trade/api-and-sdk
 - https://docs.tensor.foundation/tokenomics
 updated: '2026-05-24'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units: []
+  plans:
+  - name: Developer (Application-Gated)
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Direct On-Chain Integration
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
